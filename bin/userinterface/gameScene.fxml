@@ -9,18 +9,23 @@
    <center>
       <Pane fx:id="panelGame" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-6.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/background.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="monkeySpray" fitHeight="161.0" fitWidth="1112.0" layoutX="14.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>
    <top>
-      <Pane prefHeight="145.0" prefWidth="1102.0" style="-fx-background-color: tomato;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="145.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/up.jpg" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </top>
-   <bottom>
-      <ImageView fitHeight="88.0" fitWidth="1108.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../../rampage-game/src/Images/Street.png" />
-         </image>
-      </ImageView>
-   </bottom>
 </BorderPane>

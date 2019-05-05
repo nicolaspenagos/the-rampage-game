@@ -32,12 +32,13 @@ public class gameController {
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this); 
     	guiThread.setDaemon(true);
     	guiThread.start();
-    	player = new Player(100,100);
+    	player = new Player(100,450);
 		startMove();
 	}
 
     public void update() {
     	monkeySpray.setLayoutX(player.getX());
+    	monkeySpray.setLayoutY(player.getY());
 	}
     
     
