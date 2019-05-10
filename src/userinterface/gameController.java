@@ -9,12 +9,16 @@ import threads.GUIUpdateControllThread;
 import threads.threadAnimation;
 
 public class gameController {
+	
+	
 
 	// FXML VARIABLES
 	@FXML
 	private ImageView monkeySpray;
 	@FXML
 	private Pane panelGame;
+	
+	
 
 	//Constants
 	public static final String IDLE = "IDLE";
@@ -24,6 +28,8 @@ public class gameController {
 	public static Player player;
 	public static String status;
 	public static boolean pressed;
+	private double maxWidth;
+	private double minWidth;
 
 	// Image Variables
 	Image front;
@@ -33,6 +39,9 @@ public class gameController {
 	Image side3;
 
 	public void initialize() {
+		
+		maxWidth=panelGame.getMaxWidth();
+		minWidth=panelGame.getMinWidth();
 		front = new Image("Images/front.png");
 		idleToWalk = new Image("Images/idletowalk.png");
 		side1 = new Image("Images/side1.png");
