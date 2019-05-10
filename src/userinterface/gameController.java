@@ -10,38 +10,59 @@ import threads.threadAnimation;
 
 public class gameController {
 
+	// FXML VARIABLES
 	@FXML
 	private ImageView monkeySpray;
 	@FXML
 	private Pane panelGame;
 
+	//Constants
+	public static final String IDLE = "IDLE";
+	public static final String WALKING = "WALKING";
+	
+	// Game variables and status
 	public static Player player;
-
+	public static String status;
 	public static boolean pressed;
 
-	Image[] moves = new Image[10];
-	
+	// Image Variables
+	Image front;
+	Image idleToWalk;
+	Image side1;
+	Image side2;
+	Image side3;
+
 	public void initialize() {
-		moves[0] = new Image("Images/side1.png");
-		moves[1] = new Image("Images/side2.png");
-		moves[2] = new Image("Images/side3.png");
+		front = new Image("Images/front.png");
+		idleToWalk = new Image("Images/idletowalk.png");
+		side1 = new Image("Images/side1.png");
+		side2 = new Image("Images/side2.png");
+		side3 = new Image("Images/side3.png");
 
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
 		guiThread.start();
+		monkeySpray.setImage(idleToWalk);
 		player = new Player(100, 450);
-		monkeySpray.setImage(new Image("Images/front.png"));
+		threadAnimation th = new threadAnimation(this, player);
+		th.setDaemon(true);
+		th.start();
+		idle();  
 	}
 
+	// Update the screen every 5 ms
 	public void update() {
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
 		if (pressed == true) {
 			startMove();
-		}else {
-			monkeySpray.setImage(new Image("Images/front.png"));
+		} else {
+			//idle();
+			status = IDLE;
 		}
 	}
+
+	// Keys Status
 
 	public static boolean isPressed() {
 		return pressed;
@@ -51,14 +72,28 @@ public class gameController {
 		gameController.pressed = pressed;
 	}
 
+	// change of image to walk
 	public void changeImage(int n) {
-		monkeySpray.setImage(moves[n]);
+		if (n == 1)
+			monkeySpray.setImage(side1);
+		if (n == 2)
+			monkeySpray.setImage(side2);
+		if (n == 3)
+			monkeySpray.setImage(side3);
 	}
 
+	// called the thread that changes the images for the animation of walking
 	public void startMove() {
-		threadAnimation th = new threadAnimation(this);
-		th.setDaemon(true);
-		th.start();
+		if(status.equals(IDLE)) {
+			
+			//status = WALKING;
+		}
+	}
+
+	// Character states
+
+	public void idle() {
+		monkeySpray.setImage(new Image("Images/front.png"));
 	}
 
 }
