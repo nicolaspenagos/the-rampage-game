@@ -40,7 +40,8 @@ public class Main extends Application {
 					gameController.player.move("Right");
 					gameController.setPressed(true);
 					break;
-
+				default: 
+					break;
 				}
 			}
 		});
