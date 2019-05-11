@@ -13,11 +13,11 @@ public class Player {
 	public void move(String direction) {
 		switch (direction) {
 		case "Right":
-			x+=4;
+			x+=10;
 			break;
 
 		case "Left":
-			x-=4;
+			x-=10;
 			break;
 		}
 	}

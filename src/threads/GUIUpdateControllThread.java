@@ -5,7 +5,7 @@ import userinterface.gameController;
 
 public class GUIUpdateControllThread extends Thread{
 	
-	private final static long UPDATE_SLEEP_TIME = 40;
+	private final static long UPDATE_SLEEP_TIME = 10;
 	private gameController gameGUI; 
 	
 	public GUIUpdateControllThread(gameController gameGUIx) {

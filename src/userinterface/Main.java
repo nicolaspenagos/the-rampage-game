@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import threads.threadAnimation;
 
 public class Main extends Application {
 
@@ -33,12 +34,12 @@ public class Main extends Application {
 				case DOWN:
 					break;
 				case LEFT:
-					gameController.player.move("Left");
-					gameController.setPressed(true);
+					threadAnimation.setDirection("Left");
+					threadAnimation.setPressed(true);
 					break;
 				case RIGHT:
-					gameController.player.move("Right");
-					gameController.setPressed(true);
+					threadAnimation.setDirection("Right");
+					threadAnimation.setPressed(true);
 					break;
 				default: 
 					break;
@@ -54,10 +55,10 @@ public class Main extends Application {
 				case DOWN:
 					break;
 				case LEFT:
-					gameController.setPressed(false);
+					threadAnimation.setPressed(false);
 					break;
 				case RIGHT:
-					gameController.setPressed(false);
+					threadAnimation.setPressed(false);
 					break;
 				}
 			}

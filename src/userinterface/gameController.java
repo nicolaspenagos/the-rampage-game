@@ -27,7 +27,6 @@ public class gameController {
 	// Game variables and status
 	public static Player player;
 	public static String status;
-	public static boolean pressed;
 	private double maxWidth;
 	private double minWidth;
 
@@ -64,21 +63,6 @@ public class gameController {
 	public void update() {
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
-		if (pressed == true) {
-			startMove();
-		} else {
-			//idle();
-			status = IDLE;
-		}
-	}
-
-	// Keys Status
-
-	public static void setPressed(boolean pressed) {
-		gameController.pressed = pressed;
-	}
-	public static boolean isPressed() {
-		return pressed;
 	}
 
 	// change of image to walk
