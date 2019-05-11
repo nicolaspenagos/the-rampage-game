@@ -36,6 +36,9 @@ public class gameController {
 	Image side1;
 	Image side2;
 	Image side3;
+	Image side4;
+	Image side5;
+	Image side6;
 
 	@FXML
 	public void initialize() {
@@ -47,7 +50,9 @@ public class gameController {
 		side1 = new Image("Images/side1.png");
 		side2 = new Image("Images/side2.png");
 		side3 = new Image("Images/side3.png");
-
+		side4 = new Image("Images/side4.png");
+		side5 = new Image("Images/side5.png");
+		side6 = new Image("Images/side6.png");
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
 		guiThread.start();
@@ -66,13 +71,23 @@ public class gameController {
 	}
 
 	// change of image to walk
-	public void changeImage(int n) {
-		if (n == 1)
-			monkeySpray.setImage(side1);
+	public void changeImage(int n, String dx) {
+		if (n == 1){
+			if(dx.equalsIgnoreCase("Right"))
+			 monkeySpray.setImage(side1);
+			else 
+			 monkeySpray.setImage(side4);
+		}
 		if (n == 2)
-			monkeySpray.setImage(side2);
+			if(dx.equalsIgnoreCase("Right"))
+			 monkeySpray.setImage(side2);
+			else 
+			 monkeySpray.setImage(side5);
 		if (n == 3)
-			monkeySpray.setImage(side3);
+			if(dx.equalsIgnoreCase("Right"))
+			 monkeySpray.setImage(side3);
+			else 
+			 monkeySpray.setImage(side6);
 	}
 
 	// called the thread that changes the images for the animation of walking

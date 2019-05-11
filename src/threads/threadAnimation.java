@@ -20,13 +20,13 @@ public class threadAnimation extends Thread {
 		try {
 			while (true) {
 				if(pressed == true) {
-					gc.changeImage(1);
+					gc.changeImage(1, direction);
 					player.move(direction);
 					sleep(200);
-					gc.changeImage(2);
+					gc.changeImage(2, direction);
 					player.move(direction);
 					sleep(200);
-					gc.changeImage(3);
+					gc.changeImage(3, direction);
 					player.move(direction);
 					sleep(200);
 				}else {
