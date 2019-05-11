@@ -38,6 +38,7 @@ public class gameController {
 	Image side2;
 	Image side3;
 
+	@FXML
 	public void initialize() {
 		
 		maxWidth=panelGame.getMaxWidth();
@@ -73,12 +74,11 @@ public class gameController {
 
 	// Keys Status
 
-	public static boolean isPressed() {
-		return pressed;
-	}
-
 	public static void setPressed(boolean pressed) {
 		gameController.pressed = pressed;
+	}
+	public static boolean isPressed() {
+		return pressed;
 	}
 
 	// change of image to walk
