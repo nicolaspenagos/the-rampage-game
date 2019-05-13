@@ -53,18 +53,21 @@ public class gameController {
 		side4 = new Image("Images/side4.png");
 		side5 = new Image("Images/side5.png");
 		side6 = new Image("Images/side6.png");
+		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
 		guiThread.start();
-		monkeySpray.setImage(idleToWalk);
+		//
 		player = new Player(100, 450);
+		Helicopters h = new Helicopters(100, 200, panelGame);
+		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);
 		th.start();
-		idle();  
+		
 	}
 
-	// Update the screen every 5 ms
+	// Update the screen every 10 ms
 	public void update() {
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
@@ -88,14 +91,6 @@ public class gameController {
 			 monkeySpray.setImage(side3);
 			else 
 			 monkeySpray.setImage(side6);
-	}
-
-	// called the thread that changes the images for the animation of walking
-	public void startMove() {
-		if(status.equals(IDLE)) {
-			
-			//status = WALKING;
-		}
 	}
 
 	// Character states

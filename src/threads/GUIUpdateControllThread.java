@@ -21,7 +21,6 @@ public class GUIUpdateControllThread extends Thread{
 			try {
 				sleep(UPDATE_SLEEP_TIME);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
