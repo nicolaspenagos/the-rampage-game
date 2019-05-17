@@ -22,13 +22,17 @@ public class threadAnimation extends Thread {
 				if(pressed == true) {
 					gc.changeImage(1, direction);
 					player.move(direction);
-					sleep(200);
-					gc.changeImage(2, direction);
-					player.move(direction);
-					sleep(200);
-					gc.changeImage(3, direction);
-					player.move(direction);
-					sleep(200);
+					sleep(150);
+					if(pressed == true) {
+						gc.changeImage(2, direction);
+						player.move(direction);
+						sleep(150);
+					}
+					if(pressed == true) {
+						gc.changeImage(3, direction);
+						player.move(direction);
+						sleep(150);
+					}
 				}else {
 					gc.idle();
 					//System.out.println(pressed);
