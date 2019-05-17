@@ -23,25 +23,30 @@ public class threadAnimation extends Thread {
 		try {
 			while (true) {
 				if(pressed == true) {
-					System.out.println("hOLA");
 					gc.changeImage(1, direction);
 					player.move(direction);
+					if(pressedY==true)
+						player.moveY(directionY);
 					sleep(150);
 					if(pressed == true) {
 						gc.changeImage(2, direction);
 						player.move(direction);
+						if(pressedY==true)
+							player.moveY(directionY);
 						sleep(150);
 					}
 					if(pressed == true) {
 						gc.changeImage(3, direction);
 						player.move(direction);
+						if(pressedY==true)
+							player.moveY(directionY);
 						sleep(150);
 					}
 				}else if(pressedY==true) {
 					player.moveY(directionY);
+					sleep(25);
 				}else {
 					gc.idle();
-					//System.out.println(pressed);
 				}
 			}
 		} catch (InterruptedException ex) {

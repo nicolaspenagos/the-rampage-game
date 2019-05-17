@@ -25,10 +25,10 @@ public class Player {
 	public void moveY(String direction) {
 		switch(direction) {
 		case "Up":
-			y+=10; 
+			y-=5; 
 			break;
 		case "Down":
-			y-=10;
+			y+=10;
 			break;
 		}
 	}
