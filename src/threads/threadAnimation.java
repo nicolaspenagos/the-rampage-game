@@ -8,7 +8,10 @@ public class threadAnimation extends Thread {
 	private gameController gc;
 	private Player player;
 	public static String direction = "";
+	public static String directionY = "";
 	public static boolean pressed = false;
+	public static boolean pressedY = false;
+	
 
 	public threadAnimation(gameController game, Player Player) {
 		gc = game;
@@ -20,6 +23,7 @@ public class threadAnimation extends Thread {
 		try {
 			while (true) {
 				if(pressed == true) {
+					System.out.println("hOLA");
 					gc.changeImage(1, direction);
 					player.move(direction);
 					sleep(150);
@@ -33,6 +37,8 @@ public class threadAnimation extends Thread {
 						player.move(direction);
 						sleep(150);
 					}
+				}else if(pressedY==true) {
+					player.moveY(directionY);
 				}else {
 					gc.idle();
 					//System.out.println(pressed);
@@ -54,6 +60,12 @@ public class threadAnimation extends Thread {
 		return pressed;
 	}
 	
+	public static boolean isPressedY() {
+		return pressedY;
+	}
+
+	
+	
 	//Direction
 
 	public static String getDirection() {
@@ -62,5 +74,14 @@ public class threadAnimation extends Thread {
 
 	public static void setDirection(String direction) {
 		threadAnimation.direction = direction;
+	}
+	
+	public static void setDirectionY(String direction) {
+		threadAnimation.directionY = direction;
+	}
+	
+
+	public static void setPressedY(boolean pressedY) {
+		threadAnimation.pressedY = pressedY;
 	}
 }

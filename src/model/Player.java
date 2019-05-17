@@ -22,6 +22,17 @@ public class Player {
 		}
 	}
 	
+	public void moveY(String direction) {
+		switch(direction) {
+		case "Up":
+			y+=10; 
+			break;
+		case "Down":
+			y-=10;
+			break;
+		}
+	}
+	
 	public void changeImage(int n) {
 		
 	}

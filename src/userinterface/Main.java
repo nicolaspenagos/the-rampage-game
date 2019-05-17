@@ -30,8 +30,12 @@ public class Main extends Application {
 			public void handle(KeyEvent event) {
 				switch (event.getCode()) {
 				case UP:
+					threadAnimation.setDirectionY("Up");
+					threadAnimation.setPressedY(true);
 					break;
 				case DOWN:
+					threadAnimation.setDirectionY("Down");
+					threadAnimation.setPressedY(true);
 					break;
 				case LEFT:
 					threadAnimation.setDirection("Left");
@@ -51,8 +55,10 @@ public class Main extends Application {
 			public void handle(KeyEvent event) {
 				switch (event.getCode()) {
 				case UP:
+					threadAnimation.setPressedY(false);
 					break;
 				case DOWN:
+					threadAnimation.setPressedY(false);
 					break;
 				case LEFT:
 					threadAnimation.setPressed(false);
