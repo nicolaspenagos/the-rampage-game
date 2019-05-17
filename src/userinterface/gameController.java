@@ -59,7 +59,7 @@ public class gameController {
 		guiThread.start();
 		//
 		player = new Player(100, 450);
-		Helicopters h = new Helicopters(100, 200, panelGame);
+		//Helicopters h = new Helicopters(100, 200, panelGame);
 		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);

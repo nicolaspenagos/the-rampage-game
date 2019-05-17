@@ -31,7 +31,7 @@ public class threadAnimation extends Thread {
 					sleep(200);
 				}else {
 					gc.idle();
-					System.out.println(pressed);
+					//System.out.println(pressed);
 				}
 			}
 		} catch (InterruptedException ex) {
