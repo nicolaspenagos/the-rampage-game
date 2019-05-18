@@ -11,10 +11,43 @@
          <children>
             <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-6.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/CityBackground.png" />
+                  <Image url="@../Images/Background-01.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="monkeySpray" fitHeight="161.0" fitWidth="1112.0" layoutX="14.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="387.0" fitWidth="127.0" layoutX="197.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building1_Mesa%20de%20trabajo%201.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="196.0" fitWidth="102.0" layoutX="799.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building2-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="136.0" fitWidth="134.0" layoutX="703.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building4-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="133.0" fitWidth="147.0" layoutX="463.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building6-01-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="332.0" fitWidth="163.0" layoutX="526.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building3-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="257.0" fitWidth="179.0" layoutX="355.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building5-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="monkeySpray" fitHeight="110.0" fitWidth="89.0" layoutX="463.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/front.png" />
+               </image></ImageView>
          </children>
       </Pane>
    </center>
