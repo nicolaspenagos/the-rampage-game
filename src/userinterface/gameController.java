@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Player;
 import threads.GUIUpdateControllThread;
+import threads.ScenaryAnimationsThread;
 import threads.threadAnimation;
 
 public class gameController {
@@ -29,6 +30,7 @@ public class gameController {
 	public static String status;
 	private double maxWidth;
 	private double minWidth;
+	private Helicopters helicopters;
 
 	// Image Variables
 	Image front;
@@ -59,18 +61,23 @@ public class gameController {
 		guiThread.start();
 		//
 		player = new Player(100, 450);
-		//Helicopters h = new Helicopters(100, 200, panelGame);
+		helicopters = new Helicopters(100, 65, panelGame);
 		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);
 		th.start();
-		
+		//
+		ScenaryAnimationsThread sAT= new ScenaryAnimationsThread(this, helicopters);
+		sAT.setDaemon(true);
+		sAT.start();
 	}
 
 	// Update the screen every 10 ms
 	public void update() {
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
+		helicopters.updateOnScreen();
+		
 	}
 
 	// change of image to walk

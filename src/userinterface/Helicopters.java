@@ -3,13 +3,14 @@ package userinterface;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
 public class Helicopters {
 	
 	public final static char RIGHT = 'R';
 	public final static char LEFT = 'L';
-	private Circle circle;
+	private Ellipse ellipse;
 	private Rectangle rectangle1;
 	private Rectangle rectangle2;
 	private Rectangle rectangle3;
@@ -24,38 +25,49 @@ public class Helicopters {
 		this.x=x;
 		this.y=y;
 		this.pane=pane;
+		/*
 		circle = new Circle(8.0);
 		circle.setLayoutX(x);
 		circle.setLayoutY(y);
 		circle.setFill(Color.BLACK);
-		rectangle1 = new Rectangle(18, 4);
+		*/
+		ellipse = new Ellipse(8.0, 5.0);
+		ellipse.setLayoutX(x);
+		ellipse.setLayoutY(y);
+		ellipse.setFill(Color.BLACK);
+		
+		
+		
+		
+		
+		
+		rectangle1 = new Rectangle(18, 3);
 		rectangle1.setLayoutX(x-18);
 		rectangle1.setLayoutY(y-2);
 		rectangle1.setFill(Color.BLACK);
-		rectangle2 = new Rectangle(13, 1.5);
-		rectangle2.setLayoutX(x-24);
-		rectangle2.setLayoutY(y-1);
-		rectangle2.setFill(Color.BLACK);
-		rectangle2.setRotate(90);
-		rectangle3 = new Rectangle(21, 2);
+		
+		rectangle2 = new Rectangle(6,2);
+		rectangle2.setLayoutX(x+2);
+		rectangle2.setLayoutY(y-2);
+		rectangle2.setFill(Color.rgb(0, 66, 107));
+		
+		
+		
+		rectangle3 = new Rectangle(19, 2);
 		rectangle3.setLayoutX(x-10);
-		rectangle3.setLayoutY(y-10);
+		rectangle3.setLayoutY(y-8);
 		rectangle3.setFill(Color.BLACK);
+		
 		pane.getChildren().add(rectangle1);
-		pane.getChildren().add(rectangle2);
 		pane.getChildren().add(rectangle3);
-		pane.getChildren().add(circle);
+		pane.getChildren().add(ellipse);
+		pane.getChildren().add(rectangle2);
+		
 		setOrientation(RIGHT); 
 		
 	}
 
-	public Circle getCircle() {
-		return circle;
-	}
 
-	public void setCircle(Circle circle) {
-		this.circle = circle;
-	}
 
 	public double getX() {
 		return x;
@@ -74,6 +86,18 @@ public class Helicopters {
 	}
 	
 	public void move() {
+		x+=5;
+	}
+	
+	public void updateOnScreen() {
+		rectangle1.setLayoutX(x-18);
+		rectangle1.setLayoutY(y-2);
+		rectangle2.setLayoutX(x+2);
+		rectangle2.setLayoutY(y-2);
+		rectangle3.setLayoutX(x-10);
+		rectangle3.setLayoutY(y-8);
+		ellipse.setLayoutX(x);
+		ellipse.setLayoutY(y);
 		
 	}
 
