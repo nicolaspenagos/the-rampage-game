@@ -1,14 +1,14 @@
 package threads;
 import userinterface.Helicopters;
-import userinterface.gameController;
+import userinterface.GameController;
 
 public class ScenaryAnimationsThread extends Thread{
 	private Helicopters helicopter1;
-	private gameController gameController;
+	private GameController GameController;
 	
-	public ScenaryAnimationsThread(gameController gc, Helicopters h) {
+	public ScenaryAnimationsThread(GameController gc, Helicopters h) {
 		helicopter1 = h;
-		gameController = gc;
+		GameController = gc;
 	}
 	
 	@Override

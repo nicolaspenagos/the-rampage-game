@@ -1,11 +1,11 @@
 package threads;
 
 import model.Player;
-import userinterface.gameController;
+import userinterface.GameController;
 
 public class threadAnimation extends Thread {
 
-	private gameController gc;
+	private GameController gc;
 	private Player player;
 
 	public static String direction = "";
@@ -14,7 +14,7 @@ public class threadAnimation extends Thread {
 	public static boolean pressedY = false;
 	
 
-	public threadAnimation(gameController game, Player Player) {
+	public threadAnimation(GameController game, Player Player) {
 		
 		gc = game;
 		player = Player;

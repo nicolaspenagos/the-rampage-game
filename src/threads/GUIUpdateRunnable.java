@@ -1,11 +1,11 @@
 package threads;
 
-import userinterface.gameController;
+import userinterface.GameController;
 
 public class GUIUpdateRunnable implements Runnable{
-	private gameController gameGUI;;
+	private GameController gameGUI;;
 	
-	public GUIUpdateRunnable(gameController gCx) {
+	public GUIUpdateRunnable(GameController gCx) {
 		gameGUI = gCx;
 	}
 	@Override

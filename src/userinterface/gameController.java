@@ -11,7 +11,7 @@ import threads.GUIUpdateControllThread;
 import threads.ScenaryAnimationsThread;
 import threads.threadAnimation;
 
-public class gameController {
+public class GameController {
 	
 	
 

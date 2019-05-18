@@ -1,14 +1,14 @@
 package threads;
 
 import javafx.application.Platform;
-import userinterface.gameController;
+import userinterface.GameController;
 
 public class GUIUpdateControllThread extends Thread{
 	
 	private final static long UPDATE_SLEEP_TIME = 10;
-	private gameController gameGUI; 
+	private GameController gameGUI; 
 	
-	public GUIUpdateControllThread(gameController gameGUIx) {
+	public GUIUpdateControllThread(GameController gameGUIx) {
 		gameGUI = gameGUIx;
 	}
 	
