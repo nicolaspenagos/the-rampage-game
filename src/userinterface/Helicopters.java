@@ -86,7 +86,13 @@ public class Helicopters {
 	}
 	
 	public void move() {
-		x+=5;
+		
+		if(x<gameController.MAX_WIDTH) {
+			x+=5;
+		}else {
+			x=0;
+		}
+		
 	}
 	
 	public void updateOnScreen() {

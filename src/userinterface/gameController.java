@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import model.Player;
 import threads.GUIUpdateControllThread;
 import threads.ScenaryAnimationsThread;
@@ -24,6 +26,8 @@ public class gameController {
 	//Constants
 	public static final String IDLE = "IDLE";
 	public static final String WALKING = "WALKING";
+	public static final double MAX_WIDTH = 1100.0;
+	public static final double MIN_WIDTH = 0.0;
 	
 	// Game variables and status
 	public static Player player;
@@ -45,8 +49,6 @@ public class gameController {
 	@FXML
 	public void initialize() {
 		
-		maxWidth=panelGame.getMaxWidth();
-		minWidth=panelGame.getMinWidth();
 		front = new Image("Images/front.png");
 		idleToWalk = new Image("Images/idletowalk.png");
 		side1 = new Image("Images/side1.png");
@@ -79,6 +81,8 @@ public class gameController {
 		helicopters.updateOnScreen();
 		
 	}
+	
+	
 
 	// change of image to walk
 	public void changeImage(int n, String dx) {
@@ -104,6 +108,14 @@ public class gameController {
 
 	public void idle() {
 		monkeySpray.setImage(new Image("Images/front.png"));
+	}
+	
+	public double getMaxWidth() {
+		return maxWidth;
+	}
+	
+	public double getMinWidth() {
+		return minWidth;
 	}
 
 }
