@@ -10,6 +10,7 @@ public class Helicopters {
 	
 	public final static char RIGHT = 'R';
 	public final static char LEFT = 'L';
+	
 	private Ellipse ellipse;
 	private Rectangle rectangle1;
 	private Rectangle rectangle2;
@@ -21,40 +22,49 @@ public class Helicopters {
 	
 	
 	
-	public Helicopters(double x, double y, Pane pane) {
+	public Helicopters(double x, double y, Pane pane, char o) {
+		
 		this.x=x;
 		this.y=y;
 		this.pane=pane;
-		/*
-		circle = new Circle(8.0);
-		circle.setLayoutX(x);
-		circle.setLayoutY(y);
-		circle.setFill(Color.BLACK);
-		*/
+		orientation = o;
+		
+		Rectangle one = new Rectangle(27,100);
+		one.setLayoutX(379);
+		one.setLayoutY(30);
+		one.setFill(Color.BLACK);
+		
+		Rectangle two = new Rectangle(27,100);
+		two.setLayoutX(439);
+		two.setLayoutY(30);
+		two.setFill(Color.BLACK);
+		
 		ellipse = new Ellipse(8.0, 5.0);
 		ellipse.setLayoutX(x);
 		ellipse.setLayoutY(y);
 		ellipse.setFill(Color.BLACK);
 		
-		
-		
-		
-		
-		
 		rectangle1 = new Rectangle(18, 3);
-		rectangle1.setLayoutX(x-18);
+		if(orientation==RIGHT)
+			rectangle1.setLayoutX(x-18);
+		else
+			rectangle1.setLayoutX(x+18);
 		rectangle1.setLayoutY(y-2);
 		rectangle1.setFill(Color.BLACK);
 		
 		rectangle2 = new Rectangle(6,2);
-		rectangle2.setLayoutX(x+2);
+		if(orientation==RIGHT)
+			rectangle2.setLayoutX(x+2);
+		else 
+			rectangle2.setLayoutX(x-2);
 		rectangle2.setLayoutY(y-2);
 		rectangle2.setFill(Color.rgb(0, 66, 107));
 		
-		
-		
 		rectangle3 = new Rectangle(19, 2);
-		rectangle3.setLayoutX(x-10);
+		if(orientation==RIGHT)
+			rectangle3.setLayoutX(x-10);
+		else 
+			rectangle3.setLayoutX(x+10);
 		rectangle3.setLayoutY(y-8);
 		rectangle3.setFill(Color.BLACK);
 		
@@ -62,8 +72,8 @@ public class Helicopters {
 		pane.getChildren().add(rectangle3);
 		pane.getChildren().add(ellipse);
 		pane.getChildren().add(rectangle2);
-		
-		setOrientation(RIGHT); 
+		pane.getChildren().add(one);
+		pane.getChildren().add(two);
 		
 	}
 
@@ -86,24 +96,44 @@ public class Helicopters {
 	}
 	
 	public void move() {
+		if(orientation==RIGHT) {
+			if(x<GameController.MAX_WIDTH) {
+				x+=5;
+			}else {
+				x=GameController.MIN_WIDTH;
+			}
+		}
 		
-		if(x<GameController.MAX_WIDTH) {
-			x+=5;
-		}else {
-			x=0;
+		if(orientation==LEFT) {
+			if(x>GameController.MIN_WIDTH) {
+				x-=5;
+			}else {
+				x=GameController.MAX_WIDTH;
+			}
 		}
 		
 	}
 	
 	public void updateOnScreen() {
-		rectangle1.setLayoutX(x-18);
-		rectangle1.setLayoutY(y-2);
-		rectangle2.setLayoutX(x+2);
-		rectangle2.setLayoutY(y-2);
-		rectangle3.setLayoutX(x-10);
-		rectangle3.setLayoutY(y-8);
-		ellipse.setLayoutX(x);
-		ellipse.setLayoutY(y);
+		if(orientation==RIGHT) {
+			rectangle1.setLayoutX(x-18);
+			rectangle1.setLayoutY(y-2);
+			rectangle2.setLayoutX(x+2);
+			rectangle2.setLayoutY(y-2);
+			rectangle3.setLayoutX(x-10);
+			rectangle3.setLayoutY(y-8);
+			ellipse.setLayoutX(x);
+			ellipse.setLayoutY(y);	
+		}else {
+			rectangle1.setLayoutX(x);
+			rectangle1.setLayoutY(y-2);
+			rectangle2.setLayoutX(x-7);
+			rectangle2.setLayoutY(y-2);
+			rectangle3.setLayoutX(x-9);
+			rectangle3.setLayoutY(y-8);
+			ellipse.setLayoutX(x);
+			ellipse.setLayoutY(y);	
+		}
 		
 	}
 

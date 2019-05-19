@@ -29,7 +29,7 @@
                   <Image url="@../Images/Building4-01.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="133.0" fitWidth="147.0" layoutX="463.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="147.0" layoutX="463.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Building6-01-01.jpg" />
                </image>
@@ -44,7 +44,7 @@
                   <Image url="@../Images/Building5-01.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="monkeySpray" fitHeight="110.0" fitWidth="89.0" layoutX="463.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="monkeySpray" fitHeight="110.0" fitWidth="89.0" layoutX="197.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/front.png" />
                </image></ImageView>

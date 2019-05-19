@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import model.Player;
 import threads.GUIUpdateControllThread;
@@ -34,7 +35,10 @@ public class GameController {
 	public static String status;
 	private double maxWidth;
 	private double minWidth;
-	private Helicopters helicopters;
+	private Helicopters helicopter;
+	private Helicopters helicopter1;
+	private Helicopters helicopter2;
+	private Circle cricle;
 
 	// Image Variables
 	Image front;
@@ -48,7 +52,9 @@ public class GameController {
 
 	@FXML
 	public void initialize() {
-		
+		cricle = new Circle(50);
+		cricle.setFill(Color.RED);
+		panelGame.getChildren().add(cricle);
 		front = new Image("Images/front.png");
 		idleToWalk = new Image("Images/idletowalk.png");
 		side1 = new Image("Images/side1.png");
@@ -57,29 +63,43 @@ public class GameController {
 		side4 = new Image("Images/side4.png");
 		side5 = new Image("Images/side5.png");
 		side6 = new Image("Images/side6.png");
+		//panelGame.getChildren().add(monkeySpray);
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
 		guiThread.start();
-		//
+	
 		player = new Player(100, 450);
-		helicopters = new Helicopters(100, 65, panelGame);
+		helicopter = new Helicopters(95, 35, panelGame, Helicopters.RIGHT);
+		helicopter1 = new Helicopters(100, 60, panelGame, Helicopters.RIGHT);
+		helicopter2 = new Helicopters(600, 90, panelGame, Helicopters.LEFT);
 		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);
 		th.start();
 		//
-		ScenaryAnimationsThread sAT= new ScenaryAnimationsThread(this, helicopters);
+		ScenaryAnimationsThread sAT= new ScenaryAnimationsThread(this, helicopter);
 		sAT.setDaemon(true);
 		sAT.start();
+		
+	    ScenaryAnimationsThread sAT1= new ScenaryAnimationsThread(this, helicopter1);
+		sAT1.setDaemon(true);
+	    sAT1.start();
+		
+		ScenaryAnimationsThread sAT2= new ScenaryAnimationsThread(this, helicopter2);
+		sAT2.setDaemon(true);
+		sAT2.start();
 	}
 
 	// Update the screen every 10 ms
 	public void update() {
+		cricle.setLayoutX(player.getX());
+		cricle.setLayoutY(player.getY());
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
-		helicopters.updateOnScreen();
-		
+		helicopter.updateOnScreen();
+		helicopter1.updateOnScreen();
+		helicopter2.updateOnScreen();
 	}
 	
 	

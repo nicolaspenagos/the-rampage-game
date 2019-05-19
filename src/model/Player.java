@@ -11,6 +11,7 @@ public class Player {
 	}
 	
 	public void move(String direction) {
+
 		switch (direction) {
 		case "Right":
 			x+=10;
