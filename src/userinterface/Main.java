@@ -34,8 +34,7 @@ public class Main extends Application {
 					threadAnimation.setPressedY(true);
 					break;
 				case DOWN:
-					threadAnimation.setDirectionY("Down");
-					threadAnimation.setPressedY(true);
+					
 					break;
 				case LEFT:
 					threadAnimation.setDirection("Left");

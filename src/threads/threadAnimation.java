@@ -12,47 +12,68 @@ public class threadAnimation extends Thread {
 	public static String directionY = "";
 	public static boolean pressed = false;
 	public static boolean pressedY = false;
+	public static boolean jumping = false;
 	
 
 	public threadAnimation(GameController game, Player Player) {
-		
 		gc = game;
 		player = Player;
-	
-		
 	}
 
 	@Override
 	public void run() {
 		try {
 			while (true) {
-		
 				if(pressed == true) {
 					gc.changeImage(1, direction);
 					player.move(direction);
-					if(pressedY==true)
-						player.moveY(directionY);
+					if(pressedY==true && jumping == false && Gravity.falling == false) {
+						jumping = true;
+						for (int i = 0; i < 15; i++) {
+							player.moveY(directionY);
+							sleep(10);
+						}
+						jumping = false;
+					}
 					sleep(150);
 					if(pressed == true) {
 						gc.changeImage(2, direction);
 						player.move(direction);
-						if(pressedY==true)
-							player.moveY(directionY);
+						if(pressedY==true && jumping == false && Gravity.falling == false) {
+							jumping = true;
+							for (int i = 0; i < 15; i++) {
+								player.moveY(directionY);
+								sleep(10);
+							}
+							jumping = false;
+						}
 						sleep(150);
 					}
 					if(pressed == true) {
 						gc.changeImage(3, direction);
 						player.move(direction);
-						if(pressedY==true)
-							player.moveY(directionY);
+						if(pressedY==true && jumping == false && Gravity.falling == false) {
+							jumping = true;
+							for (int i = 0; i < 15; i++) {
+								player.moveY(directionY);
+								sleep(10);
+							}
+							jumping = false;
+						}
 						sleep(150);
 					}
-				}else if(pressedY==true) {
-					player.moveY(directionY);
-					sleep(25);
+				}else if(pressedY==true && jumping == false && Gravity.falling == false) {
+					jumping = true;
+					for (int i = 0; i < 15; i++) {
+						player.moveY(directionY);
+						sleep(10);
+					}
+					jumping = false;
+					sleep(150);
 				}else {
 					gc.idle();
 				}
+				sleep(10);
 			}
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
@@ -73,10 +94,17 @@ public class threadAnimation extends Thread {
 	public static boolean isPressedY() {
 		return pressedY;
 	}
-
 	
 	
 	//Direction
+
+	public static boolean isJumping() {
+		return jumping;
+	}
+
+	public static void setJumping(boolean jumpiing) {
+		threadAnimation.jumping = jumpiing;
+	}
 
 	public static String getDirection() {
 		return direction;
