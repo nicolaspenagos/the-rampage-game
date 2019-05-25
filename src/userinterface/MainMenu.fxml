@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.MenuController">
+   <left>
+      <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Pane prefHeight="76.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="119.0" prefWidth="1102.0" style="-fx-background-color: black; -fx-border-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="tfNickname" alignment="CENTER" layoutX="443.0" layoutY="60.0" onKeyPressed="#acceptNickName" prefHeight="33.0" prefWidth="217.0">
+               <font>
+                  <Font name="Arcadepix" size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="380.0" layoutY="4.0" prefHeight="51.0" prefWidth="342.0" text="WRITE YOUR NICKNAME" textFill="WHITE">
+               <font>
+                  <Font name="Arcadepix" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <Pane prefHeight="593.0" prefWidth="792.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="georgePane" layoutX="10.0" layoutY="279.0" onMouseClicked="#selectGeorge" onMouseEntered="#georgeMouseEntered" onMouseExited="#georgeMouseExited" prefHeight="258.0" prefWidth="242.0" style="-fx-background-color: darkcyan;">
+               <children>
+                  <ImageView fitHeight="259.0" fitWidth="243.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/gg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="ralphPane" layoutX="275.0" layoutY="279.0" onMouseClicked="#selectRalph" onMouseEntered="#ralphMouseEntered" onMouseExited="#ralphMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: darkcyan;">
+               <children>
+                  <ImageView fitHeight="259.0" fitWidth="243.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/rp.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="lizziePane" layoutX="540.0" layoutY="279.0" onMouseClicked="#selectLizzie" onMouseEntered="#lizzieMouseEntered" onMouseExited="#lizzieMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: grey;">
+               <children>
+                  <ImageView fitHeight="242.0" fitWidth="244.0" layoutX="-1.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/LZ.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="206.0" fitWidth="801.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/text.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

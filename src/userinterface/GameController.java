@@ -35,6 +35,7 @@ public class GameController {
 	private Helicopters helicopter;
 	private Helicopters helicopter1;
 	private Helicopters helicopter2;
+	String character;
 
 	// Image Variables
 	Image front;
@@ -48,15 +49,16 @@ public class GameController {
 
 	@FXML
 	public void initialize() {
-		front = new Image("Images/front.png");
-		idleToWalk = new Image("Images/idletowalk.png");
-		side1 = new Image("Images/side1.png");
-		side2 = new Image("Images/side2.png");
-		side3 = new Image("Images/side3.png");
-		side4 = new Image("Images/side4.png");
-		side5 = new Image("Images/side5.png");
-		side6 = new Image("Images/side6.png");
-		//panelGame.getChildren().add(monkeySpray);
+		character = MenuController.character;
+		front = new Image(character+"/front.png");
+		idleToWalk = new Image(character+"/idletowalk.png");
+		side1 = new Image(character+"/side1.png");
+		side2 = new Image(character+"/side2.png");
+		side3 = new Image(character+"/side3.png");
+		side4 = new Image(character+"/side4.png");
+		side5 = new Image(character+"/side5.png");
+		side6 = new Image(character+"/side6.png");
+		
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
@@ -122,7 +124,7 @@ public class GameController {
 	// Character states
 
 	public void idle() {
-		monkeySpray.setImage(new Image("Images/front.png"));
+		monkeySpray.setImage(new Image(character+"/front.png"));
 	}
 	
 	public double getMaxWidth() {

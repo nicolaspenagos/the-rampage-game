@@ -1,5 +1,9 @@
 package userinterface;
 
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,20 +15,22 @@ import threads.threadAnimation;
 
 public class Main extends Application {
 
+	private Stage primaryStage;
+	int start = 0;
+
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
-		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("gameScene.fxml"));
+		this.primaryStage = stage;
+		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
 		Parent root = fxmlL.load();
 		Scene scene = new Scene(root);
 		stage.setTitle("Rampage");
 		stage.setScene(scene);
 		stage.show();
-
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -34,7 +40,7 @@ public class Main extends Application {
 					threadAnimation.setPressedY(true);
 					break;
 				case DOWN:
-					
+
 					break;
 				case LEFT:
 					threadAnimation.setDirection("Left");
@@ -44,7 +50,29 @@ public class Main extends Application {
 					threadAnimation.setDirection("Right");
 					threadAnimation.setPressed(true);
 					break;
-				default: 
+
+				case ENTER:
+					if (start == 0) {
+						try {
+							if (!(MenuController.character.equals(null))) {
+								try {
+									if (!MenuController.nickname.equals("")) {
+										changeScene("gameScene.fxml");
+										start = 1;
+									}
+								} catch (NullPointerException e) {
+									JOptionPane.showMessageDialog(null, "The nickname can not be null", "Error",
+											JOptionPane.ERROR_MESSAGE);
+								}
+							}
+
+						} catch (NullPointerException e) {
+							JOptionPane.showMessageDialog(null, "Select a Character", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+					break;
+				default:
 					break;
 				}
 			}
@@ -68,6 +96,16 @@ public class Main extends Application {
 				}
 			}
 		});
+	}
+
+	public void changeScene(String fxml) {
+
+		try {
+			Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+			primaryStage.getScene().setRoot(pane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
