@@ -19,6 +19,9 @@ public class GameController {
 	private ImageView monkeySpray;
 	@FXML
 	private Pane panelGame;
+	@FXML
+    private ImageView prueba1;
+
 	
 
 	//Constants
@@ -46,6 +49,7 @@ public class GameController {
 	Image side4;
 	Image side5;
 	Image side6;
+
 
 	@FXML
 	public void initialize() {
@@ -87,6 +91,8 @@ public class GameController {
 		ScenaryAnimationsThread sAT2= new ScenaryAnimationsThread(this, helicopter2);
 		sAT2.setDaemon(true);
 		sAT2.start();
+		
+		prueba1.setImage(new Image("/Images/first_damage_large-01.png"));
 	}
 
 	// Update the screen every 10 ms
