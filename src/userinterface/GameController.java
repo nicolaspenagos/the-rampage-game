@@ -51,7 +51,6 @@ public class GameController {
 	public void initialize() {
 		character = MenuController.character;
 		front = new Image(character+"/front.png");
-		idleToWalk = new Image(character+"/idletowalk.png");
 		side1 = new Image(character+"/side1.png");
 		side2 = new Image(character+"/side2.png");
 		side3 = new Image(character+"/side3.png");
