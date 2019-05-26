@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -80,6 +82,7 @@ public class GameController {
 	Image side5;
 	Image side6;
 	Image punch;
+	Image punchLeft;
 
 	@FXML
 	public void initialize() {
@@ -97,6 +100,7 @@ public class GameController {
 		side5 = new Image(character + "/side5.png");
 		side6 = new Image(character + "/side6.png");
 		punch = new Image(character + "/punch.png");
+		punchLeft = new Image(character + "/punchLeft.png");
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
 
@@ -145,6 +149,7 @@ public class GameController {
 	public void update() {
 		monkeySpray.setLayoutX(player.getX());
 		monkeySpray.setLayoutY(player.getY());
+		monkeySpray.toFront();
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
@@ -171,29 +176,17 @@ public class GameController {
 	}
 
 	public void punch(int i, String dir) {
+		System.out.println(dir);
 		if (i == 1) {
-			monkeySpray.setImage(punch);
+			if (dir.equals("Right"))
+				monkeySpray.setImage(punch);
+			else
+				monkeySpray.setImage(punchLeft);
 		} else {
 			if (dir.equals("Right"))
 				monkeySpray.setImage(side3);
 			else
 				monkeySpray.setImage(side4);
-		}
-		double x = player.getX();
-		double y = player.getY();
-		if (modelStage.getFirst().destroy(x, y)) {
-			counter++;
-			ImageView imv = new ImageView();
-			imv.setImage(new Image("Images/damage1.png"));
-			imv.setLayoutX(x);
-			imv.setLayoutY(y);
-			System.out.println("hola" + counter);
-			imv.setFitWidth(62);
-			imv.setFitHeight(62);
-			imv.setPreserveRatio(true);
-			imv.setSmooth(true);
-			imv.setCache(true);
-			panelGame.getChildren().add(imv);
 		}
 	}
 
@@ -216,9 +209,24 @@ public class GameController {
 	}
 
 	///////////////////////////////////////////////////////////////////////
-	@FXML
-	void prueba(ActionEvent event) {
-		
+
+	public void prueba() {
+		double x = player.getX();
+		double y = player.getY();
+		if (modelStage.getFirst().destroy(x, y)) {
+			counter++;
+			ImageView imv = new ImageView();
+			imv.setImage(new Image("Images/damage1.png"));
+			imv.setLayoutX(x);
+			imv.setLayoutY(y);
+			System.out.println("hola" + counter);
+			imv.setFitWidth(62);
+			imv.setFitHeight(62);
+			imv.setPreserveRatio(true);
+			imv.setSmooth(true);
+			imv.setCache(true);
+			panelGame.getChildren().add(imv);
+		}
 	}
 
 	public void collapsing(int id, int counter) {

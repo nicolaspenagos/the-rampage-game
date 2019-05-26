@@ -28,9 +28,9 @@ public class threadAnimation extends Thread {
 					gc.changeImage(1, direction);
 					player.move(direction);
 					if(hitting == true) {
-						sleep(150);
+						sleep(140);
 						gc.punch(1,direction);
-						sleep(150);
+						sleep(140);
 						gc.punch(2,direction);
 					}
 					if(pressedY==true && jumping == false && Gravity.falling == false) {
@@ -40,15 +40,21 @@ public class threadAnimation extends Thread {
 							sleep(10);
 						}
 						jumping = false;
+						if(hitting == true) {
+							sleep(140);
+							gc.punch(1,direction);
+							sleep(140);
+							gc.punch(2,direction);
+						}
 					}
 					sleep(150);
 					if(pressed == true) {
 						gc.changeImage(2, direction);
 						player.move(direction);
 						if(hitting == true) {
-							sleep(150);
+							sleep(140);
 							gc.punch(1,direction);
-							sleep(150);
+							sleep(140);
 							gc.punch(2,direction);
 						}
 						if(pressedY==true && jumping == false && Gravity.falling == false) {
@@ -58,6 +64,12 @@ public class threadAnimation extends Thread {
 								sleep(10);
 							}
 							jumping = false;
+							if(hitting == true) {
+								sleep(140);
+								gc.punch(1,direction);
+								sleep(140);
+								gc.punch(2,direction);
+							}
 						}
 						sleep(150);
 					}
@@ -77,6 +89,12 @@ public class threadAnimation extends Thread {
 								sleep(10);
 							}
 							jumping = false;
+							if(hitting == true) {
+								sleep(150);
+								gc.punch(1,direction);
+								sleep(150);
+								gc.punch(2,direction);
+							}
 						}
 						sleep(150);
 					}
@@ -87,6 +105,12 @@ public class threadAnimation extends Thread {
 						sleep(10);
 					}
 					jumping = false;
+					if(hitting == true) {
+						sleep(150);
+						gc.punch(1,direction);
+						sleep(150);
+						gc.punch(2,direction);
+					}
 					sleep(150);
 				}else {
 					gc.idle();

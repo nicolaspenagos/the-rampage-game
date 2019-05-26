@@ -15,6 +15,8 @@ import threads.threadAnimation;
 
 public class Main extends Application {
 
+	GameController gc;
+	
 	private Stage primaryStage;
 	int start = 0;
 
@@ -52,6 +54,7 @@ public class Main extends Application {
 					break;
 				case X:
 					threadAnimation.setHitting(true);
+					gc.prueba();
 					break;
 
 				case ENTER:
@@ -107,7 +110,9 @@ public class Main extends Application {
 	public void changeScene(String fxml) {
 
 		try {
-			Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+			FXMLLoader fxmlL = new FXMLLoader(getClass().getResource(fxml));
+			Parent pane = fxmlL.load();
+			gc = fxmlL.getController();
 			primaryStage.getScene().setRoot(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
