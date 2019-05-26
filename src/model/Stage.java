@@ -15,10 +15,10 @@ public class Stage {
 	//-------------------------------------
 	public Stage() {
 		itemsToDraw=new ArrayList<StageElements>();
-		Building b1=new Building(1, 200, 374, 353, 733, "/Building1-01.jpg");
-		Building b2=new Building(2, 372, 489, 477, 733,  "/Building5-01.jpg");
-		Building b3=new Building(3, 543, 694, 402, 733, "/Building3-01.jpg");
-		Building b4=new Building(4, 766, 863, 539, 733,  "/Building2-01.jpg");
+		Building b1=new Building(1, 200, 323, 237, 570, "/Building1-01.jpg");
+		Building b2=new Building(2, 374, 497, 329, 570,  "/Building5-01.jpg");
+		Building b3=new Building(3, 543, 694, 402, 570, "/Building3-01.jpg");
+		Building b4=new Building(4, 604, 709, 386, 570,  "/Building2-01.jpg");
 		
 		first=b1;
 		b1.setNext(b2);
@@ -28,7 +28,7 @@ public class Stage {
 		b3.setNext(b4);
 		b4.setPrev(b3);
 		
-		addItemsToDraw();
+		//addItemsToDraw();
 	}
 	
 	//-------------------------------------
@@ -50,7 +50,26 @@ public class Stage {
 	//-------------------------------------
 	// Methods
 	//-------------------------------------
-	public void addItemsToDraw() {
+	
+	public int collapsing() {
+		Building current=first;
+		int id=0;
+		while(current.getNext()!=null) {
+			if(current.getCollapsed()) {
+				id=current.getId();
+				deleteBuilding(current);
+			}
+			current=current.getNext();
+			if(current.getNext()==null) {
+				if(current.getCollapsed()) {
+					id=current.getId();
+					deleteBuilding(current);
+				}
+			}
+		}
+		return id;
+	}
+	/*public void addItemsToDraw() {
 		itemsToDraw.clear();
 		deleteBuilding();
 		Building currentI=first;
@@ -63,26 +82,26 @@ public class Stage {
 						itemsToDraw.add(currentJ);
 						currentJ=currentJ.getNext();
 					}
+					itemsToDraw.add(currentJ);
 				}
-				currentI=currentI.getNext();
-				if(currentI.getNext()==null) {
-					itemsToDraw.add(currentI);
-				}
+		     	currentI=currentI.getNext();
 			}
+			itemsToDraw.add(currentI);
 		}
-	}
+	}*/
 	
-	public void deleteBuilding() {
-		Building prev=first.getPrev();
-		Building current=first;
-		if(first!=null) {
-			while(current.getNext()!=null) {
-				if(current.getCollapsed()) {
-					prev.setNext(current.getNext());
-					current.getNext().setPrev(prev);
-				}
-				prev=current;
-				current=current.getNext();
+	public void deleteBuilding(Building current) {
+		Building prev=current.getPrev();
+		if(current!=null) {
+			if(current.getPrev()==null) {
+				first=current.getNext();
+				current.getNext().setPrev(null);
+			}else {
+				Building temp=current.getNext();
+				current.getPrev().setNext(current.getNext());
+				if(temp!=null)
+				temp.setPrev(current.getPrev());
+				
 			}
 			
 		}

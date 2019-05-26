@@ -14,6 +14,7 @@ public class Building extends StageElements{
 	private Damage first;
 	private String[] images;
 	private int hits;
+	private int id;
 
 	
 
@@ -32,6 +33,8 @@ public class Building extends StageElements{
 		prev=null;
 		first=null;
 		hits=0;
+		all.add(this);
+		this.id=id;
 	}
 	
 	//-------------------------------------
@@ -52,6 +55,9 @@ public class Building extends StageElements{
 	public boolean getCollapsed() {
 		return collapsed;
 	}
+	public int getId() {
+		return id;
+	}
 	
 	//-------------------------------------
 	// Setters  
@@ -67,15 +73,18 @@ public class Building extends StageElements{
 	//-------------------------------------
 	// Methods  
 	//-------------------------------------
-	public void destroy(double x, double y) {
-		if(x>=startX&&x<=endX&&y>=startY&&y<=endY) {
+	public boolean destroy(double x, double y) {
+		boolean hit = false;
+		if(x>=startX&&x<=endX&&y>=startY&&y<=endY&&!collapsed) {
+			hit=true;
 			hits++;
 			addDamage(x,y);
 			if(hits>MAX_HITS)
 				collapsed = true;
 		}else if(next!=null) {
-			next.destroy(x, y);
+			hit=next.destroy(x, y);
 		}
+		return hit;
 	}
 	
 	public void fillArray() {
@@ -92,9 +101,17 @@ public class Building extends StageElements{
 		Damage toAdd = new Damage(x,(x+Damage.HEIGTH),y,(y+Damage.HEIGTH), generateImageId());
 		if(first==null) {
 			first=toAdd;
+			all.add(toAdd);
+			System.out.println("FIRST");
 		}else {
+			
 			Damage last=getLast();
+			all.add(toAdd);
 			last.setNext(toAdd);
+			System.out.println(last.getImage());
+			System.out.println(last.getImageStartX());
+			System.out.println(last.getImageStartY());
+		
 		}
 	}
 	
@@ -110,6 +127,7 @@ public class Building extends StageElements{
 		}
 		return current;
 	}
+
 
 
 }

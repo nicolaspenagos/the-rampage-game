@@ -1,6 +1,8 @@
 package model;
 
-public abstract class StageElements {
+import java.util.ArrayList;
+
+public class StageElements {
 	
 	//-------------------------------------
 	// Atributtes 
@@ -12,8 +14,10 @@ public abstract class StageElements {
 	protected String image;
 	private double width;
 	private double height;
+	protected ArrayList<StageElements> all;
 	
 	public StageElements(double startX, double endX, double startY, double endY, String image) {
+		all=new ArrayList<>();
 		this.startX=startX;
 		this.startY=startY;
 		this.endX=endX;

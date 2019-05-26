@@ -23,6 +23,26 @@
             <TextField fx:id="AAA" layoutX="68.0" layoutY="59.0" prefHeight="25.0" prefWidth="81.0" />
             <TextField fx:id="XXX" layoutX="202.0" layoutY="59.0" prefHeight="25.0" prefWidth="81.0" />
             <Button layoutX="322.0" layoutY="59.0" mnemonicParsing="false" onAction="#prueba" text="Button" />
+            <ImageView fx:id="building1" fitHeight="357.0" fitWidth="123.0" layoutX="200.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building1-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="building2" fitHeight="264.0" fitWidth="124.0" layoutX="374.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building5-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="building4" fitHeight="203.0" fitWidth="105.0" layoutX="781.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building2-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="building3" fitHeight="323.0" fitWidth="149.0" layoutX="569.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Building3-01.jpg" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </center>
