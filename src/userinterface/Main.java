@@ -50,6 +50,9 @@ public class Main extends Application {
 					threadAnimation.setDirection("Right");
 					threadAnimation.setPressed(true);
 					break;
+				case X:
+					threadAnimation.setHitting(true);
+					break;
 
 				case ENTER:
 					if (start == 0) {
@@ -92,6 +95,9 @@ public class Main extends Application {
 					break;
 				case RIGHT:
 					threadAnimation.setPressed(false);
+					break;
+				case X:
+					threadAnimation.setHitting(false);
 					break;
 				}
 			}

@@ -22,17 +22,17 @@ import threads.threadAnimation;
 
 public class GameController {
 	///////////////////////////////////////////////////////////////////////////////
-	 @FXML
-	 private ImageView building1;
+	@FXML
+	private ImageView building1;
 
-	  @FXML
-	    private ImageView building2;
+	@FXML
+	private ImageView building2;
 
-	    @FXML
-	    private ImageView building4;
+	@FXML
+	private ImageView building4;
 
-	    @FXML
-	    private ImageView building3;
+	@FXML
+	private ImageView building3;
 
 	@FXML
 	private TextField AAA;
@@ -79,6 +79,7 @@ public class GameController {
 	Image side4;
 	Image side5;
 	Image side6;
+	Image punch;
 
 	@FXML
 	public void initialize() {
@@ -95,9 +96,10 @@ public class GameController {
 		side4 = new Image(character + "/side4.png");
 		side5 = new Image(character + "/side5.png");
 		side6 = new Image(character + "/side6.png");
+		punch = new Image(character + "/punch.png");
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
-		
+
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
 		guiThread.setDaemon(true);
@@ -133,7 +135,7 @@ public class GameController {
 		updateStageElements();
 		panelGame.getChildren().add(monkeySpray);
 		sET.start();
-		
+
 		CollapsedThread cT = new CollapsedThread(this, modelStage);
 		cT.setDaemon(true);
 		cT.start();
@@ -146,8 +148,6 @@ public class GameController {
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
-		
-
 	}
 
 	// change of image to walk
@@ -168,6 +168,33 @@ public class GameController {
 				monkeySpray.setImage(side3);
 			else
 				monkeySpray.setImage(side6);
+	}
+
+	public void punch(int i, String dir) {
+		if (i == 1) {
+			monkeySpray.setImage(punch);
+		} else {
+			if (dir.equals("Right"))
+				monkeySpray.setImage(side3);
+			else
+				monkeySpray.setImage(side4);
+		}
+		double x = player.getX();
+		double y = player.getY();
+		if (modelStage.getFirst().destroy(x, y)) {
+			counter++;
+			ImageView imv = new ImageView();
+			imv.setImage(new Image("Images/damage1.png"));
+			imv.setLayoutX(x);
+			imv.setLayoutY(y);
+			System.out.println("hola" + counter);
+			imv.setFitWidth(62);
+			imv.setFitHeight(62);
+			imv.setPreserveRatio(true);
+			imv.setSmooth(true);
+			imv.setCache(true);
+			panelGame.getChildren().add(imv);
+		}
 	}
 
 	public void updateStageElements() {
@@ -191,28 +218,13 @@ public class GameController {
 	///////////////////////////////////////////////////////////////////////
 	@FXML
 	void prueba(ActionEvent event) {
-		double x = Double.parseDouble(AAA.getText());
-		double y = Double.parseDouble(XXX.getText());
-		if(modelStage.getFirst().destroy(x,y)) {
-			counter++;
-			ImageView imv = new ImageView();
-			imv.setImage(new Image("Images/damage1.png"));
-			imv.setLayoutX(x);
-			imv.setLayoutY(y);
-			System.out.println("hola"+counter);
-	        imv.setFitWidth(62);
-	        imv.setFitHeight(62);
-	        imv.setPreserveRatio(true);
-	        imv.setSmooth(true);
-	        imv.setCache(true);
-	        panelGame.getChildren().add(imv);
-		}
-	}
-	
-	public void collapsing(int id, int counter) {
-		if(id==1) {
 		
-			String root="Images/b1-"+counter+".png";
+	}
+
+	public void collapsing(int id, int counter) {
+		if (id == 1) {
+
+			String root = "Images/b1-" + counter + ".png";
 			System.out.println(root);
 			building1.setImage(new Image(root));
 		}
