@@ -2,6 +2,12 @@ package model;
 
 public class Damage extends StageElements{
 	//-------------------------------------
+    // Constants  
+    //-------------------------------------
+	public final static double WIDTH=68.0;
+	public final static double HEIGTH=68.0;
+	
+	//-------------------------------------
 	// Atributtes 
 	//-------------------------------------
 	private double imageStartX;
@@ -14,8 +20,9 @@ public class Damage extends StageElements{
 	//-------------------------------------
 	// Constructor
 	//-------------------------------------
-	public Damage(int id, double startX, double startY, double endX, double endY, String image) {
-		super(id, startX, startY, endX, endY);
+	public Damage(double startX, double endX, double startY, double endY, String image) {
+		super(startX, startY, endX, endY, image);
+		this.image=image;
 		imageStartX=0;
 		imageStartY=0;
 		imageEndX=0;

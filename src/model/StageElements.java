@@ -5,27 +5,27 @@ public abstract class StageElements {
 	//-------------------------------------
 	// Atributtes 
 	//-------------------------------------
-	protected int id;
 	protected double startX;
 	protected double startY;
 	protected double endX;
 	protected double endY;
+	protected String image;
+	private double width;
+	private double height;
 	
-	public StageElements(int id, double startX, double startY, double endX, double endY) {
-		this.id=id;
+	public StageElements(double startX, double endX, double startY, double endY, String image) {
 		this.startX=startX;
 		this.startY=startY;
 		this.endX=endX;
 		this.endY=endY;
+		this.image=image;
+		width=endX-startX;
+		height=endY-startY;
 	}
 	
 	//-------------------------------------
 	// Getters 
 	//-------------------------------------
-	public int getId() {
-		return id;
-	}
-
 	public double getStartX() {
 		return startX;
 	}
@@ -42,4 +42,15 @@ public abstract class StageElements {
 		return endY;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+	
+	public double getWidth() {
+		return width;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
 }

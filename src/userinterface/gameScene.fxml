@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,41 +16,13 @@
                   <Image url="@../Images/Background-01.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="387.0" fitWidth="127.0" layoutX="197.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building1_Mesa%20de%20trabajo%201.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="196.0" fitWidth="102.0" layoutX="799.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building2-01.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="136.0" fitWidth="134.0" layoutX="703.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building4-01.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="133.0" fitWidth="147.0" layoutX="463.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building6-01-01.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="332.0" fitWidth="163.0" layoutX="526.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building3-01.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="257.0" fitWidth="179.0" layoutX="355.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/Building5-01.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="monkeySpray" fitHeight="110.0" fitWidth="89.0" layoutX="197.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/front.png" />
-               </image></ImageView>
-            <ImageView fx:id="prueba1" fitHeight="63.0" fitWidth="71.0" layoutX="197.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="AAA" layoutX="68.0" layoutY="59.0" prefHeight="25.0" prefWidth="81.0" />
+            <TextField fx:id="XXX" layoutX="202.0" layoutY="59.0" prefHeight="25.0" prefWidth="81.0" />
+            <Button layoutX="322.0" layoutY="59.0" mnemonicParsing="false" onAction="#prueba" text="Button" />
          </children>
       </Pane>
    </center>

@@ -12,7 +12,7 @@
       <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </left>
    <top>
-      <Pane prefHeight="76.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="94.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </top>
    <right>
       <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
@@ -34,7 +34,7 @@
       </Pane>
    </bottom>
    <center>
-      <Pane prefHeight="593.0" prefWidth="792.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="538.0" prefWidth="792.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Pane fx:id="georgePane" layoutX="10.0" layoutY="279.0" onMouseClicked="#selectGeorge" onMouseEntered="#georgeMouseEntered" onMouseExited="#georgeMouseExited" prefHeight="258.0" prefWidth="242.0" style="-fx-background-color: darkcyan;">
                <children>
@@ -63,7 +63,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <ImageView fitHeight="206.0" fitWidth="801.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="206.0" fitWidth="801.0" layoutX="-11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/text.png" />
                </image>
