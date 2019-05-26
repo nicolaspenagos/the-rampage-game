@@ -102,15 +102,12 @@ public class Building extends StageElements{
 		if(first==null) {
 			first=toAdd;
 			all.add(toAdd);
-			System.out.println("FIRST");
 		}else {
 			
 			Damage last=getLast();
 			all.add(toAdd);
 			last.setNext(toAdd);
-			System.out.println(last.getImage());
-			System.out.println(last.getImageStartX());
-			System.out.println(last.getImageStartY());
+	
 		
 		}
 	}

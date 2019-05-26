@@ -1,6 +1,7 @@
 package threads;
 
 import model.Stage;
+import customsExceptions.GameEndedException;
 import userinterface.GameController;
 
 public class CollapsedThread extends Thread{
@@ -29,6 +30,8 @@ public class CollapsedThread extends Thread{
 			sleep(50);
 		}
 		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}catch(GameEndedException e) {
 			e.printStackTrace();
 		}
 	}

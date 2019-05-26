@@ -3,14 +3,15 @@ package model;
 public class Player {
 	private double x;
 	private double y;
-
+	private String direction;
 	public Player(double x, double y) {
 		this.x = x;
 		this.y = y;
+		direction="Right";
 	}
 
 	public void move(String direction) {
-
+		this.direction=direction;
 		switch (direction) {
 		case "Right":
 			x += 10;
@@ -48,6 +49,10 @@ public class Player {
 	public double getY() {
 		return y;
 	}
+	
+    public String getDirection() {
+    	return direction;
+    }
 
 	public void setY(double y) {
 		this.y = y;

@@ -176,7 +176,7 @@ public class GameController {
 	}
 
 	public void punch(int i, String dir) {
-		System.out.println(dir);
+		
 		if (i == 1) {
 			if (dir.equals("Right"))
 				monkeySpray.setImage(punch);
@@ -211,30 +211,43 @@ public class GameController {
 	///////////////////////////////////////////////////////////////////////
 
 	public void prueba() {
-		double x = player.getX();
+		
+		double x = player.getX()+8;
+		System.out.println("b"+x);
 		double y = player.getY();
-		if (modelStage.getFirst().destroy(x, y)) {
-			counter++;
-			ImageView imv = new ImageView();
-			imv.setImage(new Image("Images/damage1.png"));
-			imv.setLayoutX(x);
-			imv.setLayoutY(y);
-			System.out.println("hola" + counter);
-			imv.setFitWidth(62);
-			imv.setFitHeight(62);
-			imv.setPreserveRatio(true);
-			imv.setSmooth(true);
-			imv.setCache(true);
-			panelGame.getChildren().add(imv);
+		if(modelStage.getFirst()!=null) {
+			if (modelStage.getFirst().destroy(x, y)) {
+			//	System.out.println(x);
+				counter++;
+				ImageView imv = new ImageView();
+				imv.setImage(new Image("Images/damage1.png"));
+				imv.setLayoutX(x);
+				imv.setLayoutY(y);
+				
+				
+				imv.setFitWidth(62);
+				imv.setFitHeight(62);
+				imv.setPreserveRatio(true);
+				imv.setSmooth(true);
+				imv.setCache(true);
+				panelGame.getChildren().add(imv);
+			}
 		}
 	}
 
 	public void collapsing(int id, int counter) {
 		if (id == 1) {
-
 			String root = "Images/b1-" + counter + ".png";
-			System.out.println(root);
 			building1.setImage(new Image(root));
+		}else if(id==2) {
+			String root = "Images/b2-" + counter + ".png";
+			building2.setImage(new Image(root));
+		}else if(id==3) {
+			String root = "Images/b3-" + counter + ".png";
+			building3.setImage(new Image(root));
+		}else if(id==4) {
+			String root = "Images/b4-" + counter + ".png";
+			building4.setImage(new Image(root));
 		}
 	}
 ///////////////////////

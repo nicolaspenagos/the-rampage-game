@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import customsExceptions.GameEndedException;
 
 public class Stage {
 
@@ -9,16 +10,17 @@ public class Stage {
 	//-------------------------------------
 	private Building first;
 	private ArrayList<StageElements> itemsToDraw;
-	
+	private int linkedListSize;
 	//-------------------------------------
 	// Constructor
 	//-------------------------------------
 	public Stage() {
 		itemsToDraw=new ArrayList<StageElements>();
-		Building b1=new Building(1, 200, 323, 237, 570, "/Building1-01.jpg");
-		Building b2=new Building(2, 374, 497, 329, 570,  "/Building5-01.jpg");
-		Building b3=new Building(3, 543, 694, 402, 570, "/Building3-01.jpg");
-		Building b4=new Building(4, 604, 709, 386, 570,  "/Building2-01.jpg");
+		Building b1=new Building(1, 138, 268, 237, 570, "/Building1-01.jpg");
+		Building b2=new Building(2, 318, 448, 329, 570,  "/Building5-01.jpg");
+		Building b3=new Building(3, 518, 668, 402, 570, "/Building3-01.jpg");
+		Building b4=new Building(4, 718, 838, 386, 570,  "/Building2-01.jpg");
+		
 		
 		first=b1;
 		b1.setNext(b2);
@@ -51,21 +53,33 @@ public class Stage {
 	// Methods
 	//-------------------------------------
 	
-	public int collapsing() {
+	public int collapsing() throws GameEndedException{
 		Building current=first;
 		int id=0;
-		while(current.getNext()!=null) {
-			if(current.getCollapsed()) {
-				id=current.getId();
-				deleteBuilding(current);
-			}
-			current=current.getNext();
+		if(first!=null) {
 			if(current.getNext()==null) {
+				if(first!=null) {
+					 if(first.getCollapsed()) {
+						 id=first.getId();
+						 first=null;
+					 }
+				}
+			}
+			while(current.getNext()!=null) {
 				if(current.getCollapsed()) {
 					id=current.getId();
 					deleteBuilding(current);
 				}
+				current=current.getNext();
+				if(current.getNext()==null) {
+					if(current.getCollapsed()) {
+						id=current.getId();
+						deleteBuilding(current);
+					}
+				}
 			}
+		}else {
+			throw new GameEndedException();
 		}
 		return id;
 	}
