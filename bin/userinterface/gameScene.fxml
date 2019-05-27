@@ -102,6 +102,11 @@
                   <Font name="Lucida Console" size="14.0" />
                </font>
             </Button>
+            <ImageView fx:id="monkeySpray" fitHeight="120.0" fitWidth="110.0" layoutX="672.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../george/front.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </center>

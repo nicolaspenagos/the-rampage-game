@@ -67,6 +67,8 @@ public class GameController {
 	private Label score;
 	@FXML
 	private Button socoreButton;
+	@FXML
+    private ImageView monkeySpray;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -87,7 +89,6 @@ public class GameController {
 	private Chronometer c;
 	private boolean gameEnded;
 	private int counter;
-	private ImageView monkeySpray;
 	public static Player player;
 	public static String status;
 	private double maxWidth;
@@ -137,13 +138,11 @@ public class GameController {
 		scoreNumber = 0;
 		hitsNumber = 0;
 		counter = 0;
-		monkeySpray = new ImageView();
 		monkeySpray.setFitHeight(120);
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
 		c = new Chronometer();
 		win = false;
-
 		fT = true;
 		front = new Image(character + "/front.png");
 		side1 = new Image(character + "/side1.png");
@@ -201,7 +200,6 @@ public class GameController {
 		StageElementsThread sET = new StageElementsThread(this);
 		sET.setDaemon(true);
 		updateStageElements();
-		panelGame.getChildren().add(monkeySpray);
 		sET.start();
 
 		CollapsedThread cT = new CollapsedThread(this, modelStage);

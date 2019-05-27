@@ -30,14 +30,14 @@ public class threadAnimation extends Thread {
 					player.move(direction);
 					if (hitting == true) {
 						if (pressedY == true) {
-							sleep(140);
+							sleep(180);
 							gc.punchY(1, direction, directionY);
-							sleep(140);
+							sleep(180);
 							gc.punchY(2, direction, directionY);
 						} else {
-							sleep(140);
+							sleep(180);
 							gc.punchX(1, direction);
-							sleep(140);
+							sleep(180);
 							gc.punchX(2, direction);
 						}
 					}
@@ -50,14 +50,14 @@ public class threadAnimation extends Thread {
 						jumping = false;
 						if (hitting == true) {
 							if (pressedY == true) {
-								sleep(140);
+								sleep(180);
 								gc.punchY(1, direction, directionY);
-								sleep(140);
+								sleep(180);
 								gc.punchY(2, direction, directionY);
 							} else {
-								sleep(140);
+								sleep(180);
 								gc.punchX(1, direction);
-								sleep(140);
+								sleep(180);
 								gc.punchX(2, direction);
 							}
 						}
@@ -68,14 +68,14 @@ public class threadAnimation extends Thread {
 						player.move(direction);
 						if (hitting == true) {
 							if (pressedY == true) {
-								sleep(140);
+								sleep(180);
 								gc.punchY(1, direction, directionY);
 								sleep(140);
 								gc.punchY(2, direction, directionY);
 							} else {
-								sleep(140);
+								sleep(180);
 								gc.punchX(1, direction);
-								sleep(140);
+								sleep(180);
 								gc.punchX(2, direction);
 							}
 						}
@@ -88,14 +88,14 @@ public class threadAnimation extends Thread {
 							jumping = false;
 							if (hitting == true) {
 								if (pressedY == true) {
-									sleep(140);
+									sleep(180);
 									gc.punchY(1, direction, directionY);
-									sleep(140);
+									sleep(180);
 									gc.punchY(2, direction, directionY);
 								} else {
-									sleep(140);
+									sleep(180);
 									gc.punchX(1, direction);
-									sleep(140);
+									sleep(180);
 									gc.punchX(2, direction);
 								}
 							}
@@ -107,14 +107,14 @@ public class threadAnimation extends Thread {
 						player.move(direction);
 						if (hitting == true) {
 							if (pressedY == true) {
-								sleep(140);
+								sleep(180);
 								gc.punchY(1, direction, directionY);
-								sleep(140);
+								sleep(180);
 								gc.punchY(2, direction, directionY);
 							} else {
-								sleep(140);
+								sleep(180);
 								gc.punchX(1, direction);
-								sleep(140);
+								sleep(180);
 								gc.punchX(2, direction);
 							}
 						}
@@ -127,14 +127,14 @@ public class threadAnimation extends Thread {
 							jumping = false;
 							if (hitting == true) {
 								if (pressedY == true) {
-									sleep(140);
+									sleep(180);
 									gc.punchY(1, direction, directionY);
-									sleep(140);
+									sleep(180);
 									gc.punchY(2, direction, directionY);
 								} else {
-									sleep(140);
+									sleep(180);
 									gc.punchX(1, direction);
-									sleep(140);
+									sleep(180);
 									gc.punchX(2, direction);
 								}
 							}
@@ -150,14 +150,14 @@ public class threadAnimation extends Thread {
 					jumping = false;
 					if (hitting == true) {
 						if (pressedY == true) {
-							sleep(140);
+							sleep(180);
 							gc.punchY(1, direction, directionY);
-							sleep(140);
+							sleep(180);
 							gc.punchY(2, direction, directionY);
 						} else {
-							sleep(140);
+							sleep(180);
 							gc.punchX(1, direction);
-							sleep(140);
+							sleep(180);
 							gc.punchX(2, direction);
 						}
 					}
@@ -165,17 +165,17 @@ public class threadAnimation extends Thread {
 				} else if (pressedY == true) {
 					gc.lookAt(direction, directionY);
 					if(hitting == true) {
-						sleep(140);
+						sleep(180);
 						gc.punchY(1, direction, directionY);
-						sleep(140);
+						sleep(180);
 						gc.punchY(2, direction, directionY);
 					}
 				} else {
 					gc.idle();
 					if (hitting == true) {
-						sleep(140);
+						sleep(180);
 						gc.punchX(1, direction);
-						sleep(140);
+						sleep(180);
 						gc.punchX(2, direction);
 					}
 				}
