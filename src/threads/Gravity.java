@@ -20,7 +20,7 @@ public class Gravity extends Thread{
 				while(true) {
 					if(player.getY()< 500 && threadAnimation.jumping == false) {
 						sleep(20);
-						player.moveY("Down");
+						player.fall("Down");
 						falling = true;
 					}else {
 						falling = false;

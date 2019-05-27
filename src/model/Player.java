@@ -25,7 +25,7 @@ public class Player {
 		}
 	}
 
-	public void moveY(String direction) {
+	public void fall(String direction) {
 		switch (direction) {
 		case "Up":
 			y -= 6;

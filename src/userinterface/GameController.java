@@ -115,6 +115,16 @@ public class GameController {
 	Image side6;
 	Image punch;
 	Image punchLeft;
+	Image punchDownL;
+	Image punchDownR;
+	Image punchUpR;
+	Image punchUpL;
+	Image lookDownL;
+	Image lookDownR;
+	Image lookUpR;
+	Image lookUpL;
+	Image painr;
+	Image painl;
 
 	@FXML
 	public void initialize() {
@@ -144,6 +154,16 @@ public class GameController {
 		side6 = new Image(character + "/side6.png");
 		punch = new Image(character + "/punch.png");
 		punchLeft = new Image(character + "/punchLeft.png");
+		punchDownL = new Image(character + "/punchDownL.png");
+		punchDownR = new Image(character + "/punchDownR.png");
+		punchUpR = new Image(character + "/punchUpR.png");
+		punchUpL = new Image(character + "/punchUpL.png");
+		lookDownL = new Image(character + "/lookDownL.png");
+		lookDownR = new Image(character + "/lookDownR.png");
+		lookUpR = new Image(character + "/lookUpR.png");
+		lookUpL = new Image(character + "/lookUpL.png");
+		painr = new Image(character + "/painr.png");
+		painl = new Image(character + "/painl.png");
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
 		gameEnded = false;
@@ -239,7 +259,24 @@ public class GameController {
 				monkeySpray.setImage(side6);
 	}
 
-	public void punch(int i, String dir) {
+	// change of image to walk
+	public void lookAt(String dirX, String dirY) {
+		if (dirX.equals("Right")) {
+			if (dirY.equals("Up")) {
+				monkeySpray.setImage(lookUpR);
+			} else {
+				monkeySpray.setImage(lookDownR);
+			}
+		} else {
+			if (dirY.equals("Up")) {
+				monkeySpray.setImage(lookUpL);
+			} else {
+				monkeySpray.setImage(lookDownL);
+			}
+		}
+	}
+
+	public void punchX(int i, String dir) {
 
 		if (i == 1) {
 			if (dir.equals("Right"))
@@ -248,6 +285,29 @@ public class GameController {
 				monkeySpray.setImage(punchLeft);
 		} else {
 			if (dir.equals("Right"))
+				monkeySpray.setImage(side3);
+			else
+				monkeySpray.setImage(side4);
+		}
+	}
+
+	public void punchY(int i, String dirX, String dirY) {
+		if (i == 1) {
+			if (dirX.equals("Right")) {
+				if (dirY.equals("Up")) {
+					monkeySpray.setImage(punchUpR);
+				} else {
+					monkeySpray.setImage(punchDownR);
+				}
+			} else {
+				if (dirY.equals("Up")) {
+					monkeySpray.setImage(punchUpL);
+				} else {
+					monkeySpray.setImage(punchDownL);
+				}
+			}
+		} else {
+			if (dirX.equals("Right"))
 				monkeySpray.setImage(side3);
 			else
 				monkeySpray.setImage(side4);

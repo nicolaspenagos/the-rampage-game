@@ -38,12 +38,16 @@ public class Main extends Application {
 			@Override
 			public void handle(KeyEvent event) {
 				switch (event.getCode()) {
+				case SPACE:
+					threadAnimation.setPressedJump(true);
+					break;
+				case DOWN:
+					threadAnimation.setDirectionY("Down");
+					threadAnimation.setPressedY(true);
+					break;
 				case UP:
 					threadAnimation.setDirectionY("Up");
 					threadAnimation.setPressedY(true);
-					break;
-				case DOWN:
-
 					break;
 				case LEFT:
 					threadAnimation.setDirection("Left");
@@ -53,7 +57,7 @@ public class Main extends Application {
 					threadAnimation.setDirection("Right");
 					threadAnimation.setPressed(true);
 					break;
-				case X:
+				case C:
 					threadAnimation.setHitting(true);
 					gc.prueba();
 					break;
@@ -89,10 +93,13 @@ public class Main extends Application {
 			@Override
 			public void handle(KeyEvent event) {
 				switch (event.getCode()) {
-				case UP:
-					threadAnimation.setPressedY(false);
+				case SPACE:
+					threadAnimation.setPressedJump(false);
 					break;
 				case DOWN:
+					threadAnimation.setPressedY(false);
+					break;
+				case UP:
 					threadAnimation.setPressedY(false);
 					break;
 				case LEFT:
@@ -101,7 +108,7 @@ public class Main extends Application {
 				case RIGHT:
 					threadAnimation.setPressed(false);
 					break;
-				case X:
+				case C:
 					threadAnimation.setHitting(false);
 					break;
 				}

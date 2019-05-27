@@ -11,6 +11,7 @@ public class threadAnimation extends Thread {
 	public static String direction = "";
 	public static String directionY = "";
 	public static boolean pressed = false;
+	public static boolean pressedJump = false;
 	public static boolean pressedY = false;
 	public static boolean jumping = false;
 	public static boolean hitting = false;
@@ -24,101 +25,158 @@ public class threadAnimation extends Thread {
 	public void run() {
 		try {
 			while (true) {
-				if(pressed == true) {
+				if (pressed == true) {
 					gc.changeImage(1, direction);
 					player.move(direction);
-					if(hitting == true) {
-						sleep(140);
-						gc.punch(1,direction);
-						sleep(140 );
-						gc.punch(2,direction);
+					if (hitting == true) {
+						if (pressedY == true) {
+							sleep(140);
+							gc.punchY(1, direction, directionY);
+							sleep(140);
+							gc.punchY(2, direction, directionY);
+						} else {
+							sleep(140);
+							gc.punchX(1, direction);
+							sleep(140);
+							gc.punchX(2, direction);
+						}
 					}
-					if(pressedY==true && jumping == false && Gravity.falling == false) {
+					if (pressedJump == true && jumping == false && Gravity.falling == false) {
 						jumping = true;
 						for (int i = 0; i < 15; i++) {
-							player.moveY(directionY);
+							player.fall("Up");
 							sleep(10);
 						}
 						jumping = false;
-						if(hitting == true) {
-							sleep(140);
-							gc.punch(1,direction);
-							sleep(140);
-							gc.punch(2,direction);
+						if (hitting == true) {
+							if (pressedY == true) {
+								sleep(140);
+								gc.punchY(1, direction, directionY);
+								sleep(140);
+								gc.punchY(2, direction, directionY);
+							} else {
+								sleep(140);
+								gc.punchX(1, direction);
+								sleep(140);
+								gc.punchX(2, direction);
+							}
 						}
 					}
 					sleep(150);
-					if(pressed == true) {
+					if (pressed == true) {
 						gc.changeImage(2, direction);
 						player.move(direction);
-						if(hitting == true) {
-							sleep(140);
-							gc.punch(1,direction);
-							sleep(140);
-							gc.punch(2,direction);
+						if (hitting == true) {
+							if (pressedY == true) {
+								sleep(140);
+								gc.punchY(1, direction, directionY);
+								sleep(140);
+								gc.punchY(2, direction, directionY);
+							} else {
+								sleep(140);
+								gc.punchX(1, direction);
+								sleep(140);
+								gc.punchX(2, direction);
+							}
 						}
-						if(pressedY==true && jumping == false && Gravity.falling == false) {
+						if (pressedJump == true && jumping == false && Gravity.falling == false) {
 							jumping = true;
 							for (int i = 0; i < 15; i++) {
-								player.moveY(directionY);
+								player.fall("Up");
 								sleep(10);
 							}
 							jumping = false;
-							if(hitting == true) {
-								sleep(140);
-								gc.punch(1,direction);
-								sleep(140);
-								gc.punch(2,direction);
+							if (hitting == true) {
+								if (pressedY == true) {
+									sleep(140);
+									gc.punchY(1, direction, directionY);
+									sleep(140);
+									gc.punchY(2, direction, directionY);
+								} else {
+									sleep(140);
+									gc.punchX(1, direction);
+									sleep(140);
+									gc.punchX(2, direction);
+								}
 							}
 						}
 						sleep(150);
 					}
-					if(pressed == true) {
+					if (pressed == true) {
 						gc.changeImage(3, direction);
 						player.move(direction);
-						if(hitting == true) {
-							sleep(150);
-							gc.punch(1,direction);
-							sleep(150);
-							gc.punch(2,direction);
+						if (hitting == true) {
+							if (pressedY == true) {
+								sleep(140);
+								gc.punchY(1, direction, directionY);
+								sleep(140);
+								gc.punchY(2, direction, directionY);
+							} else {
+								sleep(140);
+								gc.punchX(1, direction);
+								sleep(140);
+								gc.punchX(2, direction);
+							}
 						}
-						if(pressedY==true && jumping == false && Gravity.falling == false) {
+						if (pressedJump == true && jumping == false && Gravity.falling == false) {
 							jumping = true;
 							for (int i = 0; i < 15; i++) {
-								player.moveY(directionY);
+								player.fall("Up");
 								sleep(10);
 							}
 							jumping = false;
-							if(hitting == true) {
-								sleep(150);
-								gc.punch(1,direction);
-								sleep(150);
-								gc.punch(2,direction);
+							if (hitting == true) {
+								if (pressedY == true) {
+									sleep(140);
+									gc.punchY(1, direction, directionY);
+									sleep(140);
+									gc.punchY(2, direction, directionY);
+								} else {
+									sleep(140);
+									gc.punchX(1, direction);
+									sleep(140);
+									gc.punchX(2, direction);
+								}
 							}
 						}
 						sleep(150);
 					}
-				}else if(pressedY==true && jumping == false && Gravity.falling == false) {
+				} else if (pressedJump == true && jumping == false && Gravity.falling == false) {
 					jumping = true;
 					for (int i = 0; i < 15; i++) {
-						player.moveY(directionY);
+						player.fall("Up");
 						sleep(10);
 					}
 					jumping = false;
-					if(hitting == true) {
-						sleep(150);
-						gc.punch(1,direction);
-						sleep(150);
-						gc.punch(2,direction);
+					if (hitting == true) {
+						if (pressedY == true) {
+							sleep(140);
+							gc.punchY(1, direction, directionY);
+							sleep(140);
+							gc.punchY(2, direction, directionY);
+						} else {
+							sleep(140);
+							gc.punchX(1, direction);
+							sleep(140);
+							gc.punchX(2, direction);
+						}
 					}
 					sleep(150);
-				}else {
-					gc.idle();
+				} else if (pressedY == true) {
+					gc.lookAt(direction, directionY);
 					if(hitting == true) {
-						sleep(150);
-						gc.punch(1,direction);
-						sleep(150);
-						gc.punch(2,direction);
+						sleep(140);
+						gc.punchY(1, direction, directionY);
+						sleep(140);
+						gc.punchY(2, direction, directionY);
+					}
+				} else {
+					gc.idle();
+					if (hitting == true) {
+						sleep(140);
+						gc.punchX(1, direction);
+						sleep(140);
+						gc.punchX(2, direction);
 					}
 				}
 				sleep(10);
@@ -138,11 +196,7 @@ public class threadAnimation extends Thread {
 	public static boolean isPressed() {
 		return pressed;
 	}
-	
-	public static boolean isPressedY() {
-		return pressedY;
-	}
-	
+
 	public static boolean isHitting() {
 		return hitting;
 	}
@@ -150,8 +204,8 @@ public class threadAnimation extends Thread {
 	public static void setHitting(boolean hitting) {
 		threadAnimation.hitting = hitting;
 	}
-	
-	//Direction
+
+	// Direction
 
 	public static boolean isJumping() {
 		return jumping;
@@ -165,16 +219,32 @@ public class threadAnimation extends Thread {
 		return direction;
 	}
 
+	public static String getDirectionY() {
+		return directionY;
+	}
+
 	public static void setDirection(String direction) {
 		threadAnimation.direction = direction;
 	}
-	
+
 	public static void setDirectionY(String direction) {
 		threadAnimation.directionY = direction;
 	}
-	
+
+	public static boolean isPressedJump() {
+		return pressedJump;
+	}
+
+	public static void setPressedJump(boolean pressedJump) {
+		threadAnimation.pressedJump = pressedJump;
+	}
+
+	public static boolean isPressedY() {
+		return pressedY;
+	}
 
 	public static void setPressedY(boolean pressedY) {
 		threadAnimation.pressedY = pressedY;
 	}
+
 }
