@@ -1,6 +1,12 @@
 package userinterface;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +24,8 @@ import model.Scores;
 import threads.ScoreControllerThread;
 
 public class ScoreController {
-    @FXML
-    private Label dateLabel;
+	@FXML
+	private Label dateLabel;
 	@FXML
 	private TableView<PlayerScore> tableView;
 	@FXML
@@ -34,18 +40,30 @@ public class ScoreController {
 	private TableColumn<PlayerScore, Integer> time;
 	@FXML
 	private TableColumn<CustomDate, String> date;
-	
+	@FXML
+	private Label nickNameLabelScore;
+    @FXML
+    private Label playerScoreLabel;
+    @FXML
+	private Label playerHitsLabel;
+    @FXML
+    private Label playerTimeLabel;
+
 	private ObservableList<PlayerScore> oListPlayers;
+	private PlayerScore py;
 
 	private Scores scoresClass;
 
 	public void initialize() {
+	
+		loadPlayer();
+		
+		playerScoreLabel.setText(""+py.getScore());
+		playerHitsLabel.setText(""+py.getHits());
+		playerTimeLabel.setText(""+py.getTime());
 		try {
 			scoresClass = new Scores();
-			Date dx = new Date();
-			String date=dx.toString();
-	     	String toShow=date.substring(3,11 );
-			dateLabel.setText(toShow+"/ 2019");
+			dateLabel.setText(py.getDate().toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,18 +76,54 @@ public class ScoreController {
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		tableView.setItems(oListPlayers);
-		
-	
+		readNickName();
+
 	}
-	
+
 	public void update() {
 		updateList();
-		
+
+	}
+
+	public void updateList() {
+		PlayerScore[] array = scoresClass.getAllPlayersScores();
+		List<PlayerScore> list = Arrays.asList(array);
+		oListPlayers = FXCollections.observableArrayList(list);
+	}
+
+	public void readNickName() {
+		File f = new File("data/nickName.txt");
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			String line = br.readLine();
+			nickNameLabelScore.setText(line);
+			br.close();
+			fr.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	 public void updateList(){
-	    	PlayerScore[] array = scoresClass.getAllPlayersScores();
-	    	List<PlayerScore> list = Arrays.asList(array);
-			oListPlayers = FXCollections.observableArrayList(list);
-	 }
+	public void loadPlayer(){
+		File f=new File("data/SerializedPlayer.dat");
+		if(f.exists()) {
+			try {
+				ObjectInputStream io = new ObjectInputStream(new FileInputStream(f));
+				py=(PlayerScore) io.readObject();
+				io.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }

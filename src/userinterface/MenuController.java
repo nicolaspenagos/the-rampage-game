@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,7 +18,7 @@ public class MenuController {
 
 	public static String character;
 	public static String nickname;
-
+	
 	@FXML
 	private Pane georgePane;
 

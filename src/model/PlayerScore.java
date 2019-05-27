@@ -1,6 +1,8 @@
 package model;
 
-public class PlayerScore {
+import java.io.Serializable;
+
+public class PlayerScore implements Serializable{
 	
 	private String nickName;
 	private int hits;
@@ -16,6 +18,15 @@ public class PlayerScore {
 		this.score=score;
 		this.time=time;
 		this.date=new CustomDate();
+	}
+	
+	public PlayerScore(String nickName, int hits, int score, String time, CustomDate cD) {
+		setRanking(0);
+		this.nickName=nickName;
+		this.hits=hits;
+		this.score=score;
+		this.time=time;
+		this.date=cD;
 	}
 
 	public String getNickName() {

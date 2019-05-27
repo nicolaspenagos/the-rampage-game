@@ -1,13 +1,15 @@
 package model;
 
-public class CustomDate {
+import java.io.Serializable;
+
+public class CustomDate implements Serializable{
 	
 	private int year;
 	private int month;
 	private int day;
 	
 	public CustomDate() {
-		year = ((int) (Math.random() * 3) + 1)+2017;
+		year = ((int) (Math.random() * 3) + 1)+2016;
 		month = ((int) (Math.random() * 12) + 1);
 		day = ((int) (Math.random() * 30) + 1);
 		

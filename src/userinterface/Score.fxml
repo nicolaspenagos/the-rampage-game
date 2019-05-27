@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.ScoreController">
@@ -14,10 +18,63 @@
       <Pane prefHeight="624.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="624.0" prefWidth="557.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <Pane fx:id="typeOfRanking" prefHeight="624.0" prefWidth="557.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="128.0" layoutX="25.0" layoutY="170.0" stroke="WHITE" strokeType="INSIDE" width="507.0" />
+            <Label layoutX="48.0" layoutY="192.0" text="Welcome: " textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="nickNameLabelScore" layoutX="144.0" layoutY="192.0" text="Jester" textFill="#6593ff">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="221.0" text="Your game," textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="250.0" text="Score: " textFill="#6593ff">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerScoreLabel" layoutX="138.0" layoutY="252.0" text="560" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="211.0" layoutY="252.0" text="Hits:" textFill="#6593ff">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="347.0" layoutY="251.0" text="Time:" textFill="#6593ff">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerHitsLabel" layoutX="272.0" layoutY="252.0" text="120" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerTimeLabel" layoutX="409.0" layoutY="251.0" text="12:34:97" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="typeOfRanking" fitHeight="131.0" fitWidth="508.0" layoutX="25.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/WorldRanking_Mesa%20de%20trabajo%201.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
    </right>
    <center>
-      <TableView fx:id="tableView" prefHeight="624.0" prefWidth="740.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="576.0" prefWidth="471.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn id="ranking" fx:id="ranking" prefWidth="58.400022864341736" text="Ranking" />
           <TableColumn id="nickname" fx:id="nickName" prefWidth="101.60001373291016" text="Nickname" />
@@ -31,16 +88,35 @@
    <top>
       <Pane prefHeight="145.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/ScoresUp-01-01.jpg" />
+                  <Image url="@../Images/ScoresUp-01-01-01.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="dateLabel" layoutX="759.0" layoutY="60.0" prefHeight="31.0" prefWidth="290.0" text="Date">
+            <Label fx:id="dateLabel" layoutX="759.0" layoutY="68.0" prefHeight="31.0" prefWidth="290.0" text="Date">
                <font>
-                  <Font name="Lucida Console" size="16.0" />
+                  <Font name="Lucida Console" size="20.0" />
                </font>
             </Label>
+            <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="1102.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </children>
       </Pane>
    </top>

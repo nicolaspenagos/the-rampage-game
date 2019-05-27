@@ -12,7 +12,7 @@
    <center>
       <Pane fx:id="panelGame" onKeyPressed="#prueba" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-3.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-4.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Background-01.jpg" />
                </image>
@@ -107,7 +107,7 @@
                   <Image url="@../george/punchUpL.png" />
                </image>
             </ImageView>
-            <Label fx:id="nicknameLabel" layoutX="537.0" layoutY="42.0" textFill="WHITE">
+            <Label fx:id="nicknameLabel" layoutX="501.0" layoutY="42.0" text="Jester" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="20.0" />
                </font>

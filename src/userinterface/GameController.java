@@ -3,9 +3,13 @@ package userinterface;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.Chronometer;
+import model.CustomDate;
 import model.Player;
 import model.PlayerScore;
 import model.Stage;
@@ -111,6 +116,7 @@ public class GameController {
 	private ArrayList<ImageView> stageElements;
 	String character;
 	private boolean win;
+	private boolean objectWritten;
 	Main main;
 
 	// Image Variables
@@ -149,6 +155,7 @@ public class GameController {
 		monkeySpray.setFitHeight(120);
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
+		objectWritten=false;
 		c = new Chronometer();
 		win = false;
 		fT = true;
@@ -344,7 +351,6 @@ public class GameController {
 	public void prueba() {
 		hitsNumber++;
 		double x = player.getX() + 8;
-		System.out.println("b" + x);
 		double y = player.getY();
 		if (modelStage.getFirst() != null) {
 			if (modelStage.getFirst().destroy(x, y)) {
@@ -420,12 +426,30 @@ public class GameController {
 		socoreButton.setVisible(true);
 		exitButton.toFront();
 		socoreButton.toFront();
-		savePlayerScore();
+		if(!objectWritten)
+			saveSerializedPlayerScore();
 
 	}
 	
-	public void savePlayerScore() {
-		//PlayerScore ps = new PlayerScore();
+	public void saveSerializedPlayerScore() {
+		objectWritten=true;
+		Calendar c = new GregorianCalendar();
+		int day = (c.get(Calendar.DATE));
+		int month = (c.get(Calendar.MONTH));
+		int year = (c.get(Calendar.YEAR));
+		PlayerScore ps = new PlayerScore(nicknameLabel.getText(), hitsNumber, scoreNumber, endGameTime.getText(), new CustomDate(day,month,year));
+		
+		try {
+			ObjectOutputStream io= new ObjectOutputStream(new FileOutputStream(new File("data/SerializedPlayer.dat")));
+			io.writeObject(ps);
+			io.close();
+		} catch (FileNotFoundException e) {
+		
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 	
 	public void readNickName() {
@@ -444,9 +468,6 @@ public class GameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		
 	}
 
