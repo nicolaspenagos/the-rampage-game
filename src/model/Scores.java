@@ -12,7 +12,7 @@ public class Scores {
 	private ArrayList<PlayerScore> playerScoreArrayList;
 	
 	public Scores() throws IOException {
-		load("data/localR.txt", ",");
+		load("data/Untitled2.txt", ",");
 	}
 	private void load(String path, String sep) throws IOException {
 		File f=new File(path);
