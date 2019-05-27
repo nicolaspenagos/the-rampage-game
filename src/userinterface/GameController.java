@@ -1,5 +1,10 @@
 package userinterface;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -16,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.Chronometer;
 import model.Player;
+import model.PlayerScore;
 import model.Stage;
 import model.StageElements;
 import threads.CollapsedThread;
@@ -59,6 +65,8 @@ public class GameController {
 	private Label endGameScore;
 	@FXML
 	private Button exitButton;
+	@FXML
+    private Label nicknameLabel;
 	@FXML
 	private Label time;
 	@FXML
@@ -166,6 +174,7 @@ public class GameController {
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
 		gameEnded = false;
+		readNickName();
 
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
@@ -411,7 +420,34 @@ public class GameController {
 		socoreButton.setVisible(true);
 		exitButton.toFront();
 		socoreButton.toFront();
+		savePlayerScore();
 
+	}
+	
+	public void savePlayerScore() {
+		//PlayerScore ps = new PlayerScore();
+	}
+	
+	public void readNickName() {
+		File f=new File("data/nickName.txt");
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			String line = br.readLine();
+			nicknameLabel.setText(line);
+			br.close();
+			fr.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 
 

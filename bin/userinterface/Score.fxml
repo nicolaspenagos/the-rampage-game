@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.ScoreController">
-   <top>
-      <ImageView fitHeight="158.0" fitWidth="1109.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../Images/Up2-01.jpg" />
-         </image>
-      </ImageView>
-   </top>
    <left>
       <Pane prefHeight="624.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="624.0" prefWidth="339.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="624.0" prefWidth="557.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <TableView fx:id="tableView" prefHeight="624.0" prefWidth="740.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn id="ranking" fx:id="ranking" prefWidth="75.0" text="Ranking" />
-          <TableColumn id="nickname" fx:id="nickName" prefWidth="75.0" text="Nickname" />
-            <TableColumn id="hits" fx:id="hits" prefWidth="75.0" text="Hits" />
-            <TableColumn id="score" fx:id="score" prefWidth="75.0" text="Score" />
-            <TableColumn id="time" fx:id="time" prefWidth="75.0" text="Time" />
-            <TableColumn id="date" fx:id="date" prefWidth="75.0" text="Date" />
+          <TableColumn id="ranking" fx:id="ranking" prefWidth="58.400022864341736" text="Ranking" />
+          <TableColumn id="nickname" fx:id="nickName" prefWidth="101.60001373291016" text="Nickname" />
+            <TableColumn id="hits" fx:id="hits" prefWidth="70.39999389648438" text="Hits" />
+            <TableColumn id="score" fx:id="score" prefWidth="65.59991455078125" text="Score" />
+            <TableColumn id="time" fx:id="time" prefWidth="112.79998779296875" text="Time" />
+            <TableColumn id="date" fx:id="date" prefWidth="133.5999755859375" text="Date" />
         </columns>
       </TableView>
    </center>
+   <top>
+      <Pane prefHeight="145.0" prefWidth="1102.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ScoresUp-01-01.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="dateLabel" layoutX="759.0" layoutY="60.0" prefHeight="31.0" prefWidth="290.0" text="Date">
+               <font>
+                  <Font name="Lucida Console" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
 </BorderPane>

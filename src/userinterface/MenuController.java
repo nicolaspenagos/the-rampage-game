@@ -1,5 +1,9 @@
 package userinterface;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 
 import javafx.fxml.FXML;
@@ -31,6 +35,7 @@ public class MenuController {
 		if(event.getCode().equals(KeyCode.ENTER)) {
 			if(!tfNickname.getText().equals("")) {
 				nickname = tfNickname.getText();
+				printNickName();
 			}else {
 				tfNickname.requestFocus();
 			}
@@ -122,6 +127,18 @@ public class MenuController {
 
 	public static void setCharacter(String character) {
 		MenuController.character = character;
+	}
+	
+	public void printNickName() {
+		try {
+			PrintWriter pw = new PrintWriter(new File("data/nickName.txt"));
+			String msg=nickname;
+			pw.print(msg);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

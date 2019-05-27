@@ -2,20 +2,24 @@ package userinterface;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CustomDate;
 import model.PlayerScore;
 import model.Scores;
+import threads.ScoreControllerThread;
 
 public class ScoreController {
-
+    @FXML
+    private Label dateLabel;
 	@FXML
 	private TableView<PlayerScore> tableView;
 	@FXML
@@ -38,6 +42,10 @@ public class ScoreController {
 	public void initialize() {
 		try {
 			scoresClass = new Scores();
+			Date dx = new Date();
+			String date=dx.toString();
+	     	String toShow=date.substring(3,11 );
+			dateLabel.setText(toShow+"/ 2019");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,10 +58,13 @@ public class ScoreController {
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		tableView.setItems(oListPlayers);
+		
+	
 	}
 	
 	public void update() {
 		updateList();
+		
 	}
 	
 	 public void updateList(){
