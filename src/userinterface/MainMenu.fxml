@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.MenuController">
@@ -12,14 +13,15 @@
       <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </left>
    <top>
-      <Pane prefHeight="94.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="0.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </top>
    <right>
       <Pane prefHeight="603.0" prefWidth="155.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="119.0" prefWidth="1102.0" style="-fx-background-color: black; -fx-border-color: white;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="119.0" prefWidth="877.0" style="-fx-background-color: black; -fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03476c" height="132.0" layoutX="154.0" layoutY="-18.0" stroke="BLACK" strokeType="INSIDE" width="794.0" />
             <TextField fx:id="tfNickname" alignment="CENTER" layoutX="443.0" layoutY="65.0" onKeyPressed="#acceptNickName" prefHeight="33.0" prefWidth="255.0">
                <font>
                   <Font name="Arcadepix" size="15.0" />
@@ -34,9 +36,9 @@
       </Pane>
    </bottom>
    <center>
-      <Pane prefHeight="538.0" prefWidth="792.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="610.0" prefWidth="737.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="georgePane" layoutX="10.0" layoutY="279.0" onMouseClicked="#selectGeorge" onMouseEntered="#georgeMouseEntered" onMouseExited="#georgeMouseExited" prefHeight="258.0" prefWidth="242.0" style="-fx-background-color: darkcyan;">
+            <Pane fx:id="georgePane" layoutY="369.0" onMouseClicked="#selectGeorge" onMouseEntered="#georgeMouseEntered" onMouseExited="#georgeMouseExited" prefHeight="258.0" prefWidth="242.0" style="-fx-background-color: darkcyan;">
                <children>
                   <ImageView fitHeight="259.0" fitWidth="243.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,7 +47,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="ralphPane" layoutX="275.0" layoutY="279.0" onMouseClicked="#selectRalph" onMouseEntered="#ralphMouseEntered" onMouseExited="#ralphMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: darkcyan;">
+            <Pane fx:id="ralphPane" layoutX="275.0" layoutY="369.0" onMouseClicked="#selectRalph" onMouseEntered="#ralphMouseEntered" onMouseExited="#ralphMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: darkcyan;">
                <children>
                   <ImageView fitHeight="259.0" fitWidth="243.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +56,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="lizziePane" layoutX="540.0" layoutY="279.0" onMouseClicked="#selectLizzie" onMouseEntered="#lizzieMouseEntered" onMouseExited="#lizzieMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: grey;">
+            <Pane fx:id="lizziePane" layoutX="549.0" layoutY="369.0" onMouseClicked="#selectLizzie" onMouseEntered="#lizzieMouseEntered" onMouseExited="#lizzieMouseExited" prefHeight="258.0" prefWidth="243.0" style="-fx-background-color: grey;">
                <children>
                   <ImageView fitHeight="242.0" fitWidth="244.0" layoutX="-1.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -63,9 +65,19 @@
                   </ImageView>
                </children>
             </Pane>
-            <ImageView fitHeight="206.0" fitWidth="801.0" layoutX="-11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="177.0" fitWidth="519.0" layoutX="275.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/text.png" />
+                  <Image url="@../Images/A-01.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="177.0" fitWidth="241.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/hqdefault%20(1).jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="794.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Titulo_Mesa%20de%20trabajo%201.jpg" />
                </image>
             </ImageView>
          </children>
