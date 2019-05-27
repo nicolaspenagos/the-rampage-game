@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -58,6 +59,21 @@ public class GameController {
 
     @FXML
     private ImageView Life5;
+    
+    @FXML
+    private ImageView youWinImage;
+
+    @FXML
+    private Label endGameTime;
+
+    @FXML
+    private Label endGameHits;
+
+    @FXML
+    private Label endGameScore;
+    
+    @FXML
+    private Button exitButton;
 	
 	 @FXML
 	 private Label time;
@@ -67,6 +83,9 @@ public class GameController {
 
 	 @FXML
 	 private Label score;
+	 
+     @FXML
+	 private Button socoreButton;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -101,6 +120,7 @@ public class GameController {
 	private boolean fT;
 	private ArrayList<ImageView> stageElements;
 	String character;
+	private boolean win;
 
 	// Image Variables
 	Image front;
@@ -116,6 +136,12 @@ public class GameController {
 
 	@FXML
 	public void initialize() {
+		exitButton.setVisible(false);
+		socoreButton.setVisible(false);
+		youWinImage.setVisible(false);
+		endGameTime.setVisible(false);
+		endGameHits.setVisible(false);
+		endGameScore.setVisible(false);
 		scoreNumber=0;
 		hitsNumber=0;
 		counter = 0;
@@ -124,6 +150,7 @@ public class GameController {
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
 		c=new Chronometer();
+		win=false;
 		
 		fT = true;
 		front = new Image(character + "/front.png");
@@ -188,9 +215,11 @@ public class GameController {
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
-		time.setText(c.getTime());
-		score.setText(""+scoreNumber);
-		hits.setText(""+hitsNumber);
+		if(!win) {
+			time.setText(c.getTime());
+			score.setText(""+scoreNumber);
+			hits.setText(""+hitsNumber);
+		}
 		if(player.getLives()==4) 
 			Life5.setVisible(false);
 		if(player.getLives()==3) 
@@ -201,6 +230,11 @@ public class GameController {
 			Life2.setVisible(false);
 		if(player.getLives()==1) 
 			lose();
+		if(modelStage.getFirst()==null) {
+			win=true;
+			win();
+		}
+			
 		
 	}
 
@@ -266,7 +300,6 @@ public class GameController {
 		double y = player.getY();
 		if(modelStage.getFirst()!=null) {
 			if (modelStage.getFirst().destroy(x, y)) {
-			//	System.out.println(x);
 				scoreNumber+=5;
 				counter++;
 				ImageView imv = new ImageView();
@@ -311,6 +344,24 @@ public class GameController {
     	
     }
 	
+    public void win() {
+    	youWinImage.setVisible(true);
+    	endGameHits.setVisible(true);
+    	endGameTime.setVisible(true);
+    	endGameScore.setVisible(true);
+		endGameHits.setText(hits.getText());
+		endGameTime.setText(time.getText());
+		endGameScore.setText(score.getText());
+		youWinImage.toFront();
+    	endGameHits.toFront();
+    	endGameTime.toFront();
+    	endGameScore.toFront();
+    	exitButton.setVisible(true);
+    	socoreButton.setVisible(true);
+    	exitButton.toFront();
+    	socoreButton.toFront();
+	
+    }
 
 ///////////////////////
 }

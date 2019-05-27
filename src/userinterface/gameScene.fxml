@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -71,6 +72,36 @@
                   <Image url="@../Images/life-01.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="youWinImage" fitHeight="497.0" fitWidth="948.0" layoutX="75.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/YOU_WOIN_Mesa%20de%20trabajo%201.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="endGameTime" layoutX="318.0" layoutY="522.0" text="8:00:00" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="endGameHits" layoutX="603.0" layoutY="521.0" text="53" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="endGameScore" layoutX="859.0" layoutY="523.0" text="53" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="27.0" />
+               </font>
+            </Label>
+            <Button fx:id="exitButton" layoutX="137.0" layoutY="287.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="EXIT" textFill="#fffdfd">
+               <font>
+                  <Font name="Lucida Console" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="socoreButton" layoutX="828.0" layoutY="288.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="GO TO SCORES" textFill="#fffdfd">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </center>
