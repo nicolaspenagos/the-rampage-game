@@ -21,7 +21,7 @@
    <bottom>
       <Pane prefHeight="119.0" prefWidth="877.0" style="-fx-background-color: black; -fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03476c" height="132.0" layoutX="154.0" layoutY="-18.0" stroke="BLACK" strokeType="INSIDE" width="794.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03476c" height="132.0" layoutX="154.0" layoutY="-23.0" stroke="BLACK" strokeType="INSIDE" width="794.0" />
             <TextField fx:id="tfNickname" alignment="CENTER" layoutX="443.0" layoutY="65.0" onKeyPressed="#acceptNickName" prefHeight="33.0" prefWidth="255.0">
                <font>
                   <Font name="Arcadepix" size="15.0" />

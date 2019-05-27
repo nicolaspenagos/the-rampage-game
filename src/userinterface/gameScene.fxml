@@ -37,9 +37,9 @@
                   <Image url="@../Images/Building3-01.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="915.0" layoutY="42.0" text="TIME" textFill="#fed104">
+            <Label layoutX="911.0" layoutY="41.0" text="TIME" textFill="#fed104">
                <font>
-                  <Font name="Lucida Console" size="18.0" />
+                  <Font name="Lucida Console" size="20.0" />
                </font>
             </Label>
             <Label fx:id="time" layoutX="965.0" layoutY="42.0" text="0:00:00" textFill="#e5d60b">
@@ -77,11 +77,21 @@
    <top>
       <Pane prefHeight="145.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/up.jpg" />
+                  <Image url="@../Images/TOP-01.jpg" />
                </image>
             </ImageView>
+            <Label fx:id="hits" layoutX="181.0" layoutY="49.0" text="0">
+               <font>
+                  <Font name="Lucida Console" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="score" layoutX="1004.0" layoutY="49.0" text="0">
+               <font>
+                  <Font name="Lucida Console" size="36.0" />
+               </font>
+            </Label>
          </children></Pane>
    </top>
 </BorderPane>

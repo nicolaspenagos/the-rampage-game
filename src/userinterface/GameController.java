@@ -61,6 +61,12 @@ public class GameController {
 	
 	 @FXML
 	 private Label time;
+	 
+	 @FXML
+	 private Label hits;
+
+	 @FXML
+	 private Label score;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -76,6 +82,8 @@ public class GameController {
 	public static final double MIN_WIDTH = 0.0;
 
 	// Game variables and status
+	private int scoreNumber;
+	private int hitsNumber;
 	private Chronometer c;
 	private boolean gameEnded; 
 	private int counter;
@@ -108,6 +116,8 @@ public class GameController {
 
 	@FXML
 	public void initialize() {
+		scoreNumber=0;
+		hitsNumber=0;
 		counter = 0;
 		monkeySpray = new ImageView();
 		monkeySpray.setFitHeight(120);
@@ -179,6 +189,8 @@ public class GameController {
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
 		time.setText(c.getTime());
+		score.setText(""+scoreNumber);
+		hits.setText(""+hitsNumber);
 		if(player.getLives()==4) 
 			Life5.setVisible(false);
 		if(player.getLives()==3) 
@@ -248,13 +260,14 @@ public class GameController {
 	///////////////////////////////////////////////////////////////////////
 
 	public void prueba() {
-		
+		hitsNumber++;
 		double x = player.getX()+8;
 		System.out.println("b"+x);
 		double y = player.getY();
 		if(modelStage.getFirst()!=null) {
 			if (modelStage.getFirst().destroy(x, y)) {
 			//	System.out.println(x);
+				scoreNumber+=5;
 				counter++;
 				ImageView imv = new ImageView();
 				imv.setImage(new Image("Images/damage1.png"));
