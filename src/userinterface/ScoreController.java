@@ -13,6 +13,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -86,7 +87,7 @@ public class ScoreController {
 	}
 
 	public void updateList() {
-		PlayerScore[] array = scoresClass.getAllPlayersScores();
+		PlayerScore[] array = scoresClass.getAllPlayersScoresToShow();
 		List<PlayerScore> list = Arrays.asList(array);
 		oListPlayers = FXCollections.observableArrayList(list);
 	}
@@ -126,4 +127,17 @@ public class ScoreController {
 		}
 		
 	}
+	
+
+    @FXML
+    void setCategoryWR(ActionEvent event) {
+    	scoresClass.setCategory(Scores.WORLD_RANKING);
+    	updateList();
+    }
+    
+    @FXML
+    void setCategpryT5(ActionEvent event) {
+       	scoresClass.setCategory(Scores.TOP_5);
+       	updateList();
+    }
 }

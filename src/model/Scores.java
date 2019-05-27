@@ -7,15 +7,57 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Scores implements Serializable{
-	private PlayerScore[] playersScoresArray;
-	private ArrayList<PlayerScore> playerScoreArrayList;
 	
+	//------------------------------------- 
+	// Constants 
+	//-------------------------------------
+	public final static char WORLD_RANKING ='W';
+	public final static char TOP_5='T';
+	
+	//------------------------------------- 
+	// Atributtes 
+	//-------------------------------------
+	private PlayerScore[] playersScoresArrayToShow;
+	private ArrayList<PlayerScore> playerScoreArrayList;
+	private char category;
+	
+	//-------------------------------------
+	// Constructor
+	//-------------------------------------
 	public Scores() throws IOException {
 		playerScoreArrayList = new ArrayList<>();
 		load("data/Untitled2.txt", ",");
+		setCategory(WORLD_RANKING);
+		updatePlayerScoreArrayToShow();
 	}
+	
+	//-------------------------------------
+	// Getters 
+	//-------------------------------------	
+	public PlayerScore[] getAllPlayersScoresToShow() {
+		return playersScoresArrayToShow;
+	}
+	
+	public char getCategory() {
+		return category;
+	}
+	
+	//-------------------------------------
+	// Setters 
+	//-------------------------------------	
+	public void setAllPlayersScores(PlayerScore[] x) {
+		this.playersScoresArrayToShow = x;
+	}
+	
+	public void setCategory(char category) {
+		this.category = category;
+	}
+	//-------------------------------------
+	// Methods
+	//-------------------------------------
 	private void load(String path, String sep) throws IOException {
 		File f=new File(path);
 		FileReader fr=new FileReader(f);
@@ -34,15 +76,19 @@ public class Scores implements Serializable{
 		}
 		br.close();
 		fr.close();
-		playersScoresArray = new PlayerScore[playerScoreArrayList.size()];
+		
+	}
+
+	public void updatePlayerScoreArrayToShow() {
+		playersScoresArrayToShow = new PlayerScore[playerScoreArrayList.size()];
 		for (int i = 0; i < playerScoreArrayList.size(); i++) {
-			playersScoresArray[i] = playerScoreArrayList.get(i);
+			playersScoresArrayToShow[i] = playerScoreArrayList.get(i);
 		}
+		sortByRankingComparable();
 	}
-	public PlayerScore[] getAllPlayersScores() {
-		return playersScoresArray;
+
+	public void sortByRankingComparable() {
+		Arrays.sort(playersScoresArrayToShow);
 	}
-	public void setAllPlayersScores(PlayerScore[] x) {
-		this.playersScoresArray = x;
-	}
+	
 }

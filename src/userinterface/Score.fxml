@@ -100,19 +100,10 @@
             </Label>
             <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="1102.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="CHANGE CATEGORY">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" text="World Ranking" />
+                        <MenuItem mnemonicParsing="false" text="Top 5" />
                   </items>
                 </Menu>
               </menus>
