@@ -18,32 +18,26 @@ public class ScoreController {
 
 	@FXML
 	private TableView<PlayerScore> tableView;
-
 	@FXML
 	private TableColumn<PlayerScore, Integer> ranking;
-
 	@FXML
 	private TableColumn<PlayerScore, String> nickName;
-
 	@FXML
 	private TableColumn<PlayerScore, Integer> hits;
-
 	@FXML
-	private TableColumn<PlayerScore, Integer> scores;
-
+	private TableColumn<PlayerScore, Integer> score;
 	@FXML
 	private TableColumn<PlayerScore, Integer> time;
-
 	@FXML
 	private TableColumn<CustomDate, String> date;
-
+	
 	private ObservableList<PlayerScore> oListPlayers;
 
 	private Scores scoresClass;
 
 	public void initialize() {
 		try {
-			Scores scoresClass = new Scores();
+			scoresClass = new Scores();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,9 +46,10 @@ public class ScoreController {
 		ranking.setCellValueFactory(new PropertyValueFactory<>("ranking"));
 		nickName.setCellValueFactory(new PropertyValueFactory<>("nickName"));
 		hits.setCellValueFactory(new PropertyValueFactory<>("hits"));
-		scores.setCellValueFactory(new PropertyValueFactory<>("score"));
+		score.setCellValueFactory(new PropertyValueFactory<>("score"));
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		date.setCellValueFactory(new PropertyValueFactory<>("date"));
+		tableView.setItems(oListPlayers);
 	}
 	
 	public void update() {
