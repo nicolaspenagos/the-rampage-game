@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.Chronometer;
 import model.Player;
 import model.Stage;
 import model.StageElements;
@@ -41,6 +43,24 @@ public class GameController {
 
 	@FXML
 	private TextField XXX;
+	
+    @FXML
+    private ImageView Life1;
+
+    @FXML
+    private ImageView Life2;
+
+    @FXML
+    private ImageView Life3;
+
+    @FXML
+    private ImageView Life4;
+
+    @FXML
+    private ImageView Life5;
+	
+	 @FXML
+	 private Label time;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -56,6 +76,8 @@ public class GameController {
 	public static final double MIN_WIDTH = 0.0;
 
 	// Game variables and status
+	private Chronometer c;
+	private boolean gameEnded; 
 	private int counter;
 	private ImageView monkeySpray;
 	public static Player player;
@@ -91,6 +113,8 @@ public class GameController {
 		monkeySpray.setFitHeight(120);
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
+		c=new Chronometer();
+		
 		fT = true;
 		front = new Image(character + "/front.png");
 		side1 = new Image(character + "/side1.png");
@@ -103,6 +127,7 @@ public class GameController {
 		punchLeft = new Image(character + "/punchLeft.png");
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
+		gameEnded=false;
 
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
@@ -110,9 +135,9 @@ public class GameController {
 		guiThread.start();
 
 		player = new Player(100, 500);
-		helicopter = new Helicopters(95, 35, panelGame, Helicopters.RIGHT);
-		helicopter1 = new Helicopters(100, 60, panelGame, Helicopters.RIGHT);
-		helicopter2 = new Helicopters(600, 90, panelGame, Helicopters.LEFT);
+		helicopter = new Helicopters(95, 50, panelGame, Helicopters.RIGHT);
+		helicopter1 = new Helicopters(100, 70, panelGame, Helicopters.RIGHT);
+		helicopter2 = new Helicopters(600, 100, panelGame, Helicopters.LEFT);
 		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);
@@ -153,6 +178,18 @@ public class GameController {
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
+		time.setText(c.getTime());
+		if(player.getLives()==4) 
+			Life5.setVisible(false);
+		if(player.getLives()==3) 
+			Life4.setVisible(false);
+		if(player.getLives()==2) 
+			Life3.setVisible(false);
+		if(player.getLives()==1) 
+			Life2.setVisible(false);
+		if(player.getLives()==1) 
+			lose();
+		
 	}
 
 	// change of image to walk
@@ -250,6 +287,18 @@ public class GameController {
 			building4.setImage(new Image(root));
 		}
 	}
+	
+
+    @FXML
+    void loadGame(ActionEvent event) {
+
+    }
+    
+    public void lose() {
+    	
+    }
+	
+
 ///////////////////////
 }
 

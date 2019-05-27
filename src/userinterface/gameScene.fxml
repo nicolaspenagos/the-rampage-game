@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userinterface.GameController">
    <center>
       <Pane fx:id="panelGame" onKeyPressed="#prueba" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-6.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="652.0" fitWidth="1114.0" layoutX="-3.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Background-01.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="building1" fitHeight="357.0" fitWidth="123.0" layoutX="200.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Building1-01.jpg" />
@@ -38,13 +37,47 @@
                   <Image url="@../Images/Building3-01.jpg" />
                </image>
             </ImageView>
+            <Label layoutX="915.0" layoutY="42.0" text="TIME" textFill="#fed104">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="965.0" layoutY="42.0" text="0:00:00" textFill="#e5d60b">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="Life1" fitHeight="23.0" fitWidth="31.0" layoutX="42.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/life-01.png" />
+               </image></ImageView>
+            <ImageView fx:id="Life2" fitHeight="23.0" fitWidth="31.0" layoutX="75.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/life-01.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Life3" fitHeight="23.0" fitWidth="31.0" layoutX="108.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/life-01.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Life4" fitHeight="23.0" fitWidth="31.0" layoutX="140.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/life-01.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="Life5" fitHeight="23.0" fitWidth="31.0" layoutX="172.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/life-01.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </center>
    <top>
       <Pane prefHeight="145.0" prefWidth="1102.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="153.0" fitWidth="1102.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/up.jpg" />
                </image>

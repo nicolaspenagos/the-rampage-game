@@ -32,7 +32,7 @@ public class CollapsedThread extends Thread{
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}catch(GameEndedException e) {
-			e.printStackTrace();
+			
 		}
 	}
 	
