@@ -16,9 +16,10 @@ import threads.threadAnimation;
 public class Main extends Application {
 
 	GameController gc;
-	
+
 	private Stage primaryStage;
 	int start = 0;
+	Main m = this;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -65,6 +66,7 @@ public class Main extends Application {
 									if (!MenuController.nickname.equals("")) {
 										changeScene("gameScene.fxml");
 										start = 1;
+										gc.setupMain(m);
 									}
 								} catch (NullPointerException e) {
 									JOptionPane.showMessageDialog(null, "The nickname can not be null", "Error",
@@ -112,8 +114,14 @@ public class Main extends Application {
 		try {
 			FXMLLoader fxmlL = new FXMLLoader(getClass().getResource(fxml));
 			Parent pane = fxmlL.load();
-			gc = fxmlL.getController();
+			if (fxml.equals("gameScene.fxml")) {
+				gc = fxmlL.getController();
+			}
 			primaryStage.getScene().setRoot(pane);
+			if (fxml.equals("MainMenu.fxml")) {
+				start = 0;
+				MenuController.setCharacter(null);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -30,7 +30,7 @@ public class threadAnimation extends Thread {
 					if(hitting == true) {
 						sleep(140);
 						gc.punch(1,direction);
-						sleep(140);
+						sleep(140 );
 						gc.punch(2,direction);
 					}
 					if(pressedY==true && jumping == false && Gravity.falling == false) {

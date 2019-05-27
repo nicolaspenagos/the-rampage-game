@@ -116,4 +116,13 @@ public class MenuController {
 		return tfNickname.getText();
 	}
 
+	public static String getCharacter() {
+		return character;
+	}
+
+	public static void setCharacter(String character) {
+		MenuController.character = character;
+	}
+
+	
 }

@@ -29,63 +29,44 @@ public class GameController {
 	///////////////////////////////////////////////////////////////////////////////
 	@FXML
 	private ImageView building1;
-
 	@FXML
 	private ImageView building2;
-
 	@FXML
 	private ImageView building4;
-
 	@FXML
 	private ImageView building3;
-
 	@FXML
 	private TextField AAA;
-
 	@FXML
 	private TextField XXX;
-	
-    @FXML
-    private ImageView Life1;
-
-    @FXML
-    private ImageView Life2;
-
-    @FXML
-    private ImageView Life3;
-
-    @FXML
-    private ImageView Life4;
-
-    @FXML
-    private ImageView Life5;
-    
-    @FXML
-    private ImageView youWinImage;
-
-    @FXML
-    private Label endGameTime;
-
-    @FXML
-    private Label endGameHits;
-
-    @FXML
-    private Label endGameScore;
-    
-    @FXML
-    private Button exitButton;
-	
-	 @FXML
-	 private Label time;
-	 
-	 @FXML
-	 private Label hits;
-
-	 @FXML
-	 private Label score;
-	 
-     @FXML
-	 private Button socoreButton;
+	@FXML
+	private ImageView Life1;
+	@FXML
+	private ImageView Life2;
+	@FXML
+	private ImageView Life3;
+	@FXML
+	private ImageView Life4;
+	@FXML
+	private ImageView Life5;
+	@FXML
+	private ImageView youWinImage;
+	@FXML
+	private Label endGameTime;
+	@FXML
+	private Label endGameHits;
+	@FXML
+	private Label endGameScore;
+	@FXML
+	private Button exitButton;
+	@FXML
+	private Label time;
+	@FXML
+	private Label hits;
+	@FXML
+	private Label score;
+	@FXML
+	private Button socoreButton;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -104,7 +85,7 @@ public class GameController {
 	private int scoreNumber;
 	private int hitsNumber;
 	private Chronometer c;
-	private boolean gameEnded; 
+	private boolean gameEnded;
 	private int counter;
 	private ImageView monkeySpray;
 	public static Player player;
@@ -121,6 +102,7 @@ public class GameController {
 	private ArrayList<ImageView> stageElements;
 	String character;
 	private boolean win;
+	Main main;
 
 	// Image Variables
 	Image front;
@@ -142,16 +124,16 @@ public class GameController {
 		endGameTime.setVisible(false);
 		endGameHits.setVisible(false);
 		endGameScore.setVisible(false);
-		scoreNumber=0;
-		hitsNumber=0;
+		scoreNumber = 0;
+		hitsNumber = 0;
 		counter = 0;
 		monkeySpray = new ImageView();
 		monkeySpray.setFitHeight(120);
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
-		c=new Chronometer();
-		win=false;
-		
+		c = new Chronometer();
+		win = false;
+
 		fT = true;
 		front = new Image(character + "/front.png");
 		side1 = new Image(character + "/side1.png");
@@ -164,7 +146,7 @@ public class GameController {
 		punchLeft = new Image(character + "/punchLeft.png");
 		modelStage = new Stage();
 		stageElements = new ArrayList<>();
-		gameEnded=false;
+		gameEnded = false;
 
 		//
 		GUIUpdateControllThread guiThread = new GUIUpdateControllThread(this);
@@ -215,27 +197,26 @@ public class GameController {
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
-		if(!win) {
+		if (!win) {
 			time.setText(c.getTime());
-			score.setText(""+scoreNumber);
-			hits.setText(""+hitsNumber);
+			score.setText("" + scoreNumber);
+			hits.setText("" + hitsNumber);
 		}
-		if(player.getLives()==4) 
+		if (player.getLives() == 4)
 			Life5.setVisible(false);
-		if(player.getLives()==3) 
+		if (player.getLives() == 3)
 			Life4.setVisible(false);
-		if(player.getLives()==2) 
+		if (player.getLives() == 2)
 			Life3.setVisible(false);
-		if(player.getLives()==1) 
+		if (player.getLives() == 1)
 			Life2.setVisible(false);
-		if(player.getLives()==1) 
+		if (player.getLives() == 1)
 			lose();
-		if(modelStage.getFirst()==null) {
-			win=true;
+		if (modelStage.getFirst() == null) {
+			win = true;
 			win();
 		}
-			
-		
+
 	}
 
 	// change of image to walk
@@ -259,7 +240,7 @@ public class GameController {
 	}
 
 	public void punch(int i, String dir) {
-		
+
 		if (i == 1) {
 			if (dir.equals("Right"))
 				monkeySpray.setImage(punch);
@@ -295,19 +276,18 @@ public class GameController {
 
 	public void prueba() {
 		hitsNumber++;
-		double x = player.getX()+8;
-		System.out.println("b"+x);
+		double x = player.getX() + 8;
+		System.out.println("b" + x);
 		double y = player.getY();
-		if(modelStage.getFirst()!=null) {
+		if (modelStage.getFirst() != null) {
 			if (modelStage.getFirst().destroy(x, y)) {
-				scoreNumber+=5;
+				scoreNumber += 5;
 				counter++;
 				ImageView imv = new ImageView();
 				imv.setImage(new Image("Images/damage1.png"));
 				imv.setLayoutX(x);
 				imv.setLayoutY(y);
-				
-				
+
 				imv.setFitWidth(62);
 				imv.setFitHeight(62);
 				imv.setPreserveRatio(true);
@@ -322,46 +302,59 @@ public class GameController {
 		if (id == 1) {
 			String root = "Images/b1-" + counter + ".png";
 			building1.setImage(new Image(root));
-		}else if(id==2) {
+		} else if (id == 2) {
 			String root = "Images/b2-" + counter + ".png";
 			building2.setImage(new Image(root));
-		}else if(id==3) {
+		} else if (id == 3) {
 			String root = "Images/b3-" + counter + ".png";
 			building3.setImage(new Image(root));
-		}else if(id==4) {
+		} else if (id == 4) {
 			String root = "Images/b4-" + counter + ".png";
 			building4.setImage(new Image(root));
 		}
 	}
-	
 
-    @FXML
-    void loadGame(ActionEvent event) {
+	public void setupMain(Main m) {
+		main = m;
+	}
 
-    }
-    
-    public void lose() {
-    	
-    }
-	
-    public void win() {
-    	youWinImage.setVisible(true);
-    	endGameHits.setVisible(true);
-    	endGameTime.setVisible(true);
-    	endGameScore.setVisible(true);
+	@FXML
+	void Exit(ActionEvent event) {
+		main.changeScene("MainMenu.fxml");
+	}
+
+	@FXML
+	void goToScores(ActionEvent event) {
+		main.changeScene("Score.fxml");
+	}
+
+	@FXML
+	void loadGame(ActionEvent event) {
+
+	}
+
+	public void lose() {
+
+	}
+
+	public void win() {
+		youWinImage.setVisible(true);
+		endGameHits.setVisible(true);
+		endGameTime.setVisible(true);
+		endGameScore.setVisible(true);
 		endGameHits.setText(hits.getText());
 		endGameTime.setText(time.getText());
 		endGameScore.setText(score.getText());
 		youWinImage.toFront();
-    	endGameHits.toFront();
-    	endGameTime.toFront();
-    	endGameScore.toFront();
-    	exitButton.setVisible(true);
-    	socoreButton.setVisible(true);
-    	exitButton.toFront();
-    	socoreButton.toFront();
-	
-    }
+		endGameHits.toFront();
+		endGameTime.toFront();
+		endGameScore.toFront();
+		exitButton.setVisible(true);
+		socoreButton.setVisible(true);
+		exitButton.toFront();
+		socoreButton.toFront();
+
+	}
 
 ///////////////////////
 }

@@ -92,12 +92,12 @@
                   <Font name="Lucida Console" size="27.0" />
                </font>
             </Label>
-            <Button fx:id="exitButton" layoutX="137.0" layoutY="287.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="EXIT" textFill="#fffdfd">
+            <Button fx:id="exitButton" layoutX="137.0" layoutY="287.0" mnemonicParsing="false" onAction="#Exit" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="EXIT" textFill="#fffdfd">
                <font>
                   <Font name="Lucida Console" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="socoreButton" layoutX="828.0" layoutY="288.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="GO TO SCORES" textFill="#fffdfd">
+            <Button fx:id="socoreButton" layoutX="828.0" layoutY="288.0" mnemonicParsing="false" onAction="#goToScores" prefHeight="75.0" prefWidth="127.0" style="-fx-background-color: STEELBLUE;" text="GO TO SCORES" textFill="#fffdfd">
                <font>
                   <Font name="Lucida Console" size="14.0" />
                </font>
