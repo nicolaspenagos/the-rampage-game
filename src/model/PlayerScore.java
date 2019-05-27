@@ -9,13 +9,13 @@ public class PlayerScore {
 	private CustomDate date;
 	private int ranking;
 	
-	public PlayerScore(String nickName, int hits, int score, String time, CustomDate date) {
+	public PlayerScore(String nickName, int hits, int score, String time) {
 		setRanking(0);
 		this.nickName=nickName;
 		this.hits=hits;
 		this.score=score;
 		this.time=time;
-		this.date=date;
+		this.date=new CustomDate();
 	}
 
 	public String getNickName() {

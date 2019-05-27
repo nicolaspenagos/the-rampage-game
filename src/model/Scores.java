@@ -12,7 +12,7 @@ public class Scores {
 	private ArrayList<PlayerScore> playerScoreArrayList;
 	
 	public Scores() throws IOException {
-		load("", "");
+		load("data/localR.txt", ",");
 	}
 	private void load(String path, String sep) throws IOException {
 		File f=new File(path);
@@ -22,8 +22,18 @@ public class Scores {
 		
 		while(line!=null) {
 			String[] parts=line.split(sep);
-			int ranking=Integer.parseInt(parts[0]);	
+			
+			String nickName=parts[0];
+			int hits=Integer.parseInt(parts[1]);
+			int score=Integer.parseInt(parts[2]);
+			String time=parts[3];
+			
+			PlayerScore py=new PlayerScore(nickName, hits, score, time);
+			playerScoreArrayList.add(py);
+			line=br.readLine();
 		}
+		br.close();
+		fr.close();
 		
 	}
 	public PlayerScore[] getAllPlayersScores() {

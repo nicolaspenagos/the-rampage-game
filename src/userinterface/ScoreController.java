@@ -58,7 +58,7 @@ public class ScoreController {
 	}
 	
 	public void update() {
-		
+		updateList();
 	}
 	
 	 public void updateList(){
