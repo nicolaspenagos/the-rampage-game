@@ -265,6 +265,7 @@ public class GameController {
 			int endX = bonus.getX() + 15;
 			if ((player.getX() >= startX && player.getX() <= endX) && (player.getY() <= bonus.getY())) {
 				panelGame.getChildren().remove(bon);
+				scoreNumber=scoreNumber +5;
 			}
 		}
 
