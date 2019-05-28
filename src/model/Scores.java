@@ -10,14 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import customsExceptions.NothingSelectedException;
+import customsExceptions.TheArrayIsNotProperlySortedException;
+import customsExceptions.TheArrayIsNotProperlySortedException;
 
 public class Scores implements Serializable {
 
-	// -------------------------------------
-	// Constants
-	// -------------------------------------
 	public final static char WORLD_RANKING = 'W';
-	public final static char TOP_5 = 'T';
+	public final static char TOP_5 = '5';
+	public final static char RANKING = 'R';
+	public final static char NICKNAME = 'N';
+	public final static char TIME = 'T';
+	public final static char HITS = 'H';
+	public final static char SCORE = 'S';
+	public final static char DATE = 'D';
 
 	// -------------------------------------
 	// Atributtes
@@ -25,6 +30,7 @@ public class Scores implements Serializable {
 	private PlayerScore[] playersScoresArrayToShow;
 	private ArrayList<PlayerScore> playerScoreArrayList;
 	private char category;
+	private char typeOfSort;
 
 	// -------------------------------------
 	// Constructor
@@ -34,6 +40,7 @@ public class Scores implements Serializable {
 		load("data/Untitled2.txt", ",");
 		setCategory(WORLD_RANKING);
 		updatePlayerScoreArrayToShow();
+		typeOfSort=RANKING;
 	}
 
 	// -------------------------------------
@@ -96,21 +103,27 @@ public class Scores implements Serializable {
 			switch (option) {
 			case "Ranking - BubbleSort":
 				sortByRankingBubbleSort();
+				typeOfSort=RANKING;
 				break;
 			case "Nickname - BubbleSort":
 				sortByNicknameBubbleSort();
+				typeOfSort=NICKNAME;
 				break;
 			case "Hits - Selection":
 				sortByHitsSelection();
+				typeOfSort=HITS;
 				break;
 			case "Score - Selection":
 				sortByScoreSelection();
+				typeOfSort=SCORE;
 				break;
 			case "Time - Insertion":
 				sortByTimeInsertion();
+				typeOfSort=TIME;
 				break;
 			case "Date - Comparator":
 				sortByDateComparator();
+				typeOfSort=DATE;
 				break;
 			}
 		} else {
@@ -196,5 +209,69 @@ public class Scores implements Serializable {
 			}
 		}
 	}
+	
+	public PlayerScore search(String x, String y) throws TheArrayIsNotProperlySortedException {
+		PlayerScore px=null;
+		if(typeOfSort==RANKING||typeOfSort==NICKNAME) {
+			if(y.equals("Ranking - Binary Search")) {
+				px=binarySearchByRanking(Integer.parseInt(x));
+			}else {
+				px=binarySearchByNickName(x);
+			}
+		}else {
+			throw new TheArrayIsNotProperlySortedException();
+		}
+		return px;
+	}
+
+	private PlayerScore binarySearchByNickName(String nickName) {
+		sortByNicknameBubbleSort();
+		PlayerScore px = null;
+		
+		int low = 0;
+		int high = playersScoresArrayToShow.length-1;
+		boolean founded = false;
+		
+		while(low <= high&&!founded) {
+			int mid = (low + high)/2;
+			if(playersScoresArrayToShow[mid].getNickName().compareTo(nickName)<0) {
+				low = mid +1;
+			}else if(playersScoresArrayToShow[mid].getNickName().compareTo(nickName)>0) {
+				high = mid -1;
+			}else {
+				px = playersScoresArrayToShow[mid];
+				founded = true;  
+			}
+		}
+		return px;
+	}
+
+	private PlayerScore binarySearchByRanking(int x) {
+		sortByRankingComparable();
+		PlayerScore px = null;
+		
+		int low = 0;
+		int high = playersScoresArrayToShow.length-1;
+		boolean founded = false;
+		
+		while(low <= high&&!founded) {
+			int mid = (low + high)/2;
+			if(playersScoresArrayToShow[mid].getRanking()<x) {
+				low = mid +1;
+			}else if(playersScoresArrayToShow[mid].getRanking()>x) {
+				
+				high = mid -1;
+			}else {
+			
+				px = playersScoresArrayToShow[mid];
+				
+				founded = true;  
+			}
+		}
+		
+		return px;
+		
+	}
 
 }
+

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import customsExceptions.NothingSelectedException;
+import customsExceptions.TheArrayIsNotProperlySortedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CustomDate;
 import model.PlayerScore;
@@ -29,30 +32,60 @@ import threads.ScoreControllerThread;
 public class ScoreController {
 	@FXML
 	private Label dateLabel;
+	
 	@FXML
 	private TableView<PlayerScore> tableView;
+	
 	@FXML
 	private TableColumn<PlayerScore, Integer> ranking;
+	
 	@FXML
 	private TableColumn<PlayerScore, String> nickName;
+	
 	@FXML
 	private TableColumn<PlayerScore, Integer> hits;
+	
 	@FXML
 	private TableColumn<PlayerScore, Integer> score;
+
 	@FXML
 	private TableColumn<PlayerScore, Integer> time;
+
 	@FXML
 	private TableColumn<CustomDate, String> date;
+
 	@FXML
 	private Label nickNameLabelScore;
-    @FXML
-    private Label playerScoreLabel;
-    @FXML
+	
+	@FXML
+	private Label playerScoreLabel;
+
+	@FXML
 	private Label playerHitsLabel;
+
+	@FXML
+	private Label playerTimeLabel;
+
+	@FXML
+	private ComboBox<?> comboBox;
+
+	@FXML
+	private TextArea txtAreaTime;
+	
+	@FXML
+    private TextArea txtAreaHits;
+
+	@FXML
+	private TextArea txtAreaScore;
+
+	@FXML
+	private TextArea txtAreaNickname;
+	
     @FXML
-    private Label playerTimeLabel;
+    private TextField textFieldToSearch;
+    
     @FXML
-    private ComboBox<?> comboBox;
+    private ComboBox<?> comboBox2;
 
 	private ObservableList<PlayerScore> oListPlayers;
 	private PlayerScore py;
@@ -60,12 +93,12 @@ public class ScoreController {
 	private Scores scoresClass;
 
 	public void initialize() {
-	
+
 		loadPlayer();
-		
-		playerScoreLabel.setText(""+py.getScore());
-		playerHitsLabel.setText(""+py.getHits());
-		playerTimeLabel.setText(""+py.getTime());
+
+		playerScoreLabel.setText("" + py.getScore());
+		playerHitsLabel.setText("" + py.getHits());
+		playerTimeLabel.setText("" + py.getTime());
 		try {
 			scoresClass = new Scores();
 			dateLabel.setText(py.getDate().toString());
@@ -82,7 +115,11 @@ public class ScoreController {
 		date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		tableView.setItems(oListPlayers);
 		readNickName();
-
+		
+		txtAreaTime.setEditable(false);
+		txtAreaScore.setEditable(false);
+		txtAreaNickname.setEditable(false);
+		txtAreaHits.setEditable(false);
 	}
 
 	public void update() {
@@ -114,13 +151,13 @@ public class ScoreController {
 			e.printStackTrace();
 		}
 	}
-	
-	public void loadPlayer(){
-		File f=new File("data/SerializedPlayer.dat");
-		if(f.exists()) {
+
+	public void loadPlayer() {
+		File f = new File("data/SerializedPlayer.dat");
+		if (f.exists()) {
 			try {
 				ObjectInputStream io = new ObjectInputStream(new FileInputStream(f));
-				py=(PlayerScore) io.readObject();
+				py = (PlayerScore) io.readObject();
 				io.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -130,40 +167,70 @@ public class ScoreController {
 				e.printStackTrace();
 			}
 		}
-		
+
+	}
+
+	@FXML
+	void setCategoryWR(ActionEvent event) {
+		scoresClass.setCategory(Scores.WORLD_RANKING);
+		updateList();
+	}
+
+	@FXML
+	void setCategpryT5(ActionEvent event) {
+		scoresClass.setCategory(Scores.TOP_5);
+		updateList();
+	}
+
+	@FXML
+	void save(ActionEvent event) {
+
+	}
+
+	@FXML
+	void exit(ActionEvent event) {
+
 	}
 	
+	@FXML
+    void search(ActionEvent event) {
+	
+		txtAreaNickname.setText("");
+		txtAreaScore.setText("");
+		txtAreaHits.setText("");
+		txtAreaTime.setText("");
+		String param = textFieldToSearch.getText();
+		
+		try {
+		
+			PlayerScore px=scoresClass.search(param, (String)comboBox2.getValue());
+		
+			if(px!=null) {
+				txtAreaNickname.setText(""+px.getNickName());
+				txtAreaScore.setText(""+px.getScore());
+				txtAreaHits.setText(""+px.getHits());
+				txtAreaTime.setText(""+px.getTime());
+			}else {
+				txtAreaNickname.setText("N/F");
+				txtAreaScore.setText("N/F");
+				txtAreaHits.setText("N/F");
+				txtAreaTime.setText("N/F");
+			}
+		} catch (TheArrayIsNotProperlySortedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
-    @FXML
-    void setCategoryWR(ActionEvent event) {
-    	scoresClass.setCategory(Scores.WORLD_RANKING);
-    	updateList();
-    }
-    
-    @FXML
-    void setCategpryT5(ActionEvent event) {
-       	scoresClass.setCategory(Scores.TOP_5);
-       	updateList();
-    }
-    
-    @FXML
-    void save(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void exit(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void sort(ActionEvent event) {
-    	String option=(String) comboBox.getValue();
-    	try {
+	@FXML
+	void sort(ActionEvent event) {
+		String option = (String) comboBox.getValue();
+		try {
 			scoresClass.selectSorting(option);
+			
 		} catch (NothingSelectedException e) {
 			e.printStackTrace();
 		}
-    	updateList();
-    }
+		updateList();
+	}
 }
