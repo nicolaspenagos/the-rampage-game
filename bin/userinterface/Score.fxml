@@ -148,23 +148,27 @@
             </Label>
             <TextArea fx:id="txtAreaNickname" layoutX="166.0" layoutY="491.0" prefHeight="38.0" prefWidth="116.0" />
             <Label fx:id="resultLabel" layoutX="306.0" layoutY="489.0" prefHeight="37.0" prefWidth="150.0" />
-            <Label fx:id="sum" layoutX="102.0" layoutY="337.0" prefHeight="25.0" prefWidth="242.0" text="Calculate sum of scores recursively">
+            <Label fx:id="sum" layoutX="72.0" layoutY="337.0" prefHeight="25.0" prefWidth="376.0" text="Calculate sum of scores recursively">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="14.0" />
                </font>
             </Label>
             <ButtonBar layoutX="81.0" layoutY="393.0" prefHeight="40.0" prefWidth="200.0" />
           <Button fx:id="sumB" layoutX="170.0" layoutY="368.0" mnemonicParsing="false" onAction="#sumR" text="Sum" />
-            <Label fx:id="As" layoutX="227.0" layoutY="372.0" />
+            <Label fx:id="As" layoutX="239.0" layoutY="368.0" text="Answer:">
+               <font>
+                  <Font name="Lucida Console" size="24.0" />
+               </font>
+            </Label>
             <Label fx:id="palindrome" layoutX="96.0" layoutY="490.0" prefHeight="25.0" prefWidth="242.0" text="Search palindrome">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="14.0" />
                </font>
             </Label>
             <Button fx:id="searchButton1" layoutX="124.0" layoutY="527.0" mnemonicParsing="false" onAction="#palindrome" prefHeight="27.0" prefWidth="92.0" text="SEACRH" />
-            <Label fx:id="palindrome2" layoutX="268.0" layoutY="495.0" prefHeight="25.0" prefWidth="242.0" text="Search palindrome">
+            <Label fx:id="palindrome2" layoutX="268.0" layoutY="490.0" prefHeight="25.0" prefWidth="242.0" textFill="#6593ff">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="24.0" />
                </font>
             </Label>
 			</children>
