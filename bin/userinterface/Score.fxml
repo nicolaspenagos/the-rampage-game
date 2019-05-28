@@ -95,10 +95,10 @@
 						<FXCollections fx:factory="observableArrayList">
 							<String fx:id="Option1" fx:value="Ranking - BubbleSort" />
 							<String fx:id="Option2" fx:value="Nickname - BubbleSort" />
-							<String fx:id="Option3" fx:value="by flight" />
-							<String fx:id="Option4" fx:value="by destine" />
-							<String fx:id="Option5" fx:value="by gate" />
-							<String fx:id="Option5" fx:value="by date" />
+							<String fx:id="Option3" fx:value="Hits - Selection" />
+							<String fx:id="Option4" fx:value="Score - Selection" />
+							<String fx:id="Option5" fx:value="Time - Insertion" />
+							<String fx:id="Option5" fx:value="Date - Comparator" />
 						</FXCollections>
 					</items>
 				</ComboBox>

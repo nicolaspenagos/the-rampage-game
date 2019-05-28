@@ -94,6 +94,7 @@ public class ScoreController {
 		PlayerScore[] array = scoresClass.getAllPlayersScoresToShow();
 		List<PlayerScore> list = Arrays.asList(array);
 		oListPlayers = FXCollections.observableArrayList(list);
+		tableView.setItems(oListPlayers);
 	}
 
 	public void readNickName() {
@@ -163,5 +164,6 @@ public class ScoreController {
 		} catch (NothingSelectedException e) {
 			e.printStackTrace();
 		}
+    	updateList();
     }
 }
