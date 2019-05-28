@@ -18,6 +18,7 @@ public class Chronometer {
 		int sec=0;
 		time="";
 		ChronometerThread cT=new ChronometerThread(this);
+		cT.setDaemon(true);
 		cT.start();
 	}
 	

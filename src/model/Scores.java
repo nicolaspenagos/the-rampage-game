@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import customsExceptions.NothingSelectedException;
+
 public class Scores implements Serializable{
 	
 	//------------------------------------- 
@@ -86,9 +88,35 @@ public class Scores implements Serializable{
 		}
 		sortByRankingComparable();
 	}
+	
+	/*public void selectSorting(String option) throws NothingSelectedException{
+		if(option==null) {
+			
+		}else {
+			throw new NothingSelectedException();
+		}
+	}*/
 
 	public void sortByRankingComparable() {
 		Arrays.sort(playersScoresArrayToShow);
+		for(int i=0; i<playersScoresArrayToShow.length;i++) {
+			PlayerScore current=playersScoresArrayToShow[i];
+			current.setRanking(i+1);
+		}
 	}
+	
+	public void sortByRankingBubbleSort() {
+		for (int i = playersScoresArrayToShow.length; i>0 ; i--) {
+			for (int j = 0; j < i-1; j++) {
+				if(playersScoresArrayToShow[j].getRanking()>playersScoresArrayToShow[j+1].getRanking()) {
+					PlayerScore temp = playersScoresArrayToShow[j+1]; 
+					playersScoresArrayToShow[j+1]=playersScoresArrayToShow[j];
+					playersScoresArrayToShow[j]= temp;
+				}
+			}
+		}
+	}
+	
+	
 	
 }

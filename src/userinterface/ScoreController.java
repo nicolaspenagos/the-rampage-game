@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,6 +50,8 @@ public class ScoreController {
 	private Label playerHitsLabel;
     @FXML
     private Label playerTimeLabel;
+    @FXML
+    private ComboBox<?> comboBox;
 
 	private ObservableList<PlayerScore> oListPlayers;
 	private PlayerScore py;
@@ -139,5 +142,21 @@ public class ScoreController {
     void setCategpryT5(ActionEvent event) {
        	scoresClass.setCategory(Scores.TOP_5);
        	updateList();
+    }
+    
+    @FXML
+    void save(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void exit(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void sort(ActionEvent event) {
+    	String option=(String) comboBox.getValue();
+    	//scoresClass.selectSorting(option);
     }
 }
