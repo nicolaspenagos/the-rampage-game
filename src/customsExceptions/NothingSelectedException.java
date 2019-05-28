@@ -1,6 +1,6 @@
 package customsExceptions;
 
-public class NothingSelectedException extends Thread{
+public class NothingSelectedException extends Exception{
 	//-------------------------------------
 	//Constructor
 	//-------------------------------------

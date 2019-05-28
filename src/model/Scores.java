@@ -89,13 +89,16 @@ public class Scores implements Serializable{
 		sortByRankingComparable();
 	}
 	
-	/*public void selectSorting(String option) throws NothingSelectedException{
+	public void selectSorting(String option) throws NothingSelectedException{
 		if(option==null) {
-			
+			switch(option) {
+			case "Ranking - BubbleSort": sortByRankingComparable();
+				  						 break;
+			}
 		}else {
 			throw new NothingSelectedException();
 		}
-	}*/
+	}
 
 	public void sortByRankingComparable() {
 		Arrays.sort(playersScoresArrayToShow);

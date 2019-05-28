@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import customsExceptions.NothingSelectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -157,6 +158,10 @@ public class ScoreController {
     @FXML
     void sort(ActionEvent event) {
     	String option=(String) comboBox.getValue();
-    	//scoresClass.selectSorting(option);
+    	try {
+			scoresClass.selectSorting(option);
+		} catch (NothingSelectedException e) {
+			e.printStackTrace();
+		}
     }
 }
