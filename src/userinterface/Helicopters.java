@@ -1,10 +1,13 @@
 package userinterface;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
+import threads.ScenaryAnimationsThread;
 
 public class Helicopters {
 	
@@ -19,62 +22,73 @@ public class Helicopters {
 	private double y;
 	private Pane pane;
 	private char orientation;
+	private boolean enemy;
+	private int times;
 	
+	//Enemy
+	ImageView heli;
+	Image h1; 
 	
-	
-	public Helicopters(double x, double y, Pane pane, char o) {
+	public Helicopters(double x, double y, Pane pane, char o, boolean enemy) {
 		
 		this.x=x;
 		this.y=y;
 		this.pane=pane;
 		orientation = o;
-		
-		Rectangle one = new Rectangle(27,100);
-		one.setLayoutX(379);
-		one.setLayoutY(30);
-		one.setFill(Color.BLACK);
-		
-		Rectangle two = new Rectangle(27,100);
-		two.setLayoutX(439);
-		two.setLayoutY(30);
-		two.setFill(Color.BLACK);
-		
-		ellipse = new Ellipse(8.0, 5.0);
-		ellipse.setLayoutX(x);
-		ellipse.setLayoutY(y);
-		ellipse.setFill(Color.BLACK);
-		
-		rectangle1 = new Rectangle(18, 3);
-		if(orientation==RIGHT)
-			rectangle1.setLayoutX(x-18);
-		else
-			rectangle1.setLayoutX(x+18);
-		rectangle1.setLayoutY(y-2);
-		rectangle1.setFill(Color.BLACK);
-		
-		rectangle2 = new Rectangle(6,2);
-		if(orientation==RIGHT)
-			rectangle2.setLayoutX(x+2);
-		else 
-			rectangle2.setLayoutX(x-2);
-		rectangle2.setLayoutY(y-2);
-		rectangle2.setFill(Color.rgb(0, 66, 107));
-		
-		rectangle3 = new Rectangle(19, 2);
-		if(orientation==RIGHT)
-			rectangle3.setLayoutX(x-10);
-		else 
-			rectangle3.setLayoutX(x+10);
-		rectangle3.setLayoutY(y-8);
-		rectangle3.setFill(Color.BLACK);
-		
-		pane.getChildren().add(rectangle1);
-		pane.getChildren().add(rectangle3);
-		pane.getChildren().add(ellipse);
-		pane.getChildren().add(rectangle2);
-		pane.getChildren().add(one);
-		pane.getChildren().add(two);
-		
+		this.enemy = enemy;
+		times = 0;
+		if(enemy == false) {
+			Rectangle one = new Rectangle(27,100);
+			one.setLayoutX(379);
+			one.setLayoutY(30);
+			one.setFill(Color.BLACK);
+			
+			Rectangle two = new Rectangle(27,100);
+			two.setLayoutX(439);
+			two.setLayoutY(30);
+			two.setFill(Color.BLACK);
+			
+			ellipse = new Ellipse(8.0, 5.0);
+			ellipse.setLayoutX(x);
+			ellipse.setLayoutY(y);
+			ellipse.setFill(Color.BLACK);
+			
+			rectangle1 = new Rectangle(18, 3);
+			if(orientation==RIGHT)
+				rectangle1.setLayoutX(x-18);
+			else
+				rectangle1.setLayoutX(x+18);
+			rectangle1.setLayoutY(y-2);
+			rectangle1.setFill(Color.BLACK);
+			
+			rectangle2 = new Rectangle(6,2);
+			if(orientation==RIGHT)
+				rectangle2.setLayoutX(x+2);
+			else 
+				rectangle2.setLayoutX(x-2);
+			rectangle2.setLayoutY(y-2);
+			rectangle2.setFill(Color.rgb(0, 66, 107));
+			
+			rectangle3 = new Rectangle(19, 2);
+			if(orientation==RIGHT)
+				rectangle3.setLayoutX(x-10);
+			else 
+				rectangle3.setLayoutX(x+10);
+			rectangle3.setLayoutY(y-8);
+			rectangle3.setFill(Color.BLACK);
+			pane.getChildren().add(rectangle1);
+			pane.getChildren().add(rectangle3);
+			pane.getChildren().add(ellipse);
+			pane.getChildren().add(rectangle2);
+			pane.getChildren().add(one);
+			pane.getChildren().add(two);
+		}else {
+			h1 = new Image("Enemies/h1.png");
+			heli = new ImageView(h1);
+			heli.setFitWidth(65);
+			heli.setFitHeight(45);
+		}
+
 	}
 
 
@@ -101,6 +115,8 @@ public class Helicopters {
 				x+=5;
 			}else {
 				x=GameController.MIN_WIDTH;
+				if(enemy == true)
+					times++;
 			}
 		}
 		
@@ -109,32 +125,42 @@ public class Helicopters {
 				x-=5;
 			}else {
 				x=GameController.MAX_WIDTH;
+				if(enemy == true)
+					times++;
 			}
 		}
 		
 	}
 	
 	public void updateOnScreen() {
-		if(orientation==RIGHT) {
-			rectangle1.setLayoutX(x-18);
-			rectangle1.setLayoutY(y-2);
-			rectangle2.setLayoutX(x+2);
-			rectangle2.setLayoutY(y-2);
-			rectangle3.setLayoutX(x-10);
-			rectangle3.setLayoutY(y-8);
-			ellipse.setLayoutX(x);
-			ellipse.setLayoutY(y);	
+		if(enemy == false) {
+			if(orientation==RIGHT) {
+				rectangle1.setLayoutX(x-18);
+				rectangle1.setLayoutY(y-2);
+				rectangle2.setLayoutX(x+2);
+				rectangle2.setLayoutY(y-2);
+				rectangle3.setLayoutX(x-10);
+				rectangle3.setLayoutY(y-8);
+				ellipse.setLayoutX(x);
+				ellipse.setLayoutY(y);	
+			}else {
+				rectangle1.setLayoutX(x);
+				rectangle1.setLayoutY(y-2);
+				rectangle2.setLayoutX(x-7);
+				rectangle2.setLayoutY(y-2);
+				rectangle3.setLayoutX(x-9);
+				rectangle3.setLayoutY(y-8);
+				ellipse.setLayoutX(x);
+				ellipse.setLayoutY(y);	
+			}
 		}else {
-			rectangle1.setLayoutX(x);
-			rectangle1.setLayoutY(y-2);
-			rectangle2.setLayoutX(x-7);
-			rectangle2.setLayoutY(y-2);
-			rectangle3.setLayoutX(x-9);
-			rectangle3.setLayoutY(y-8);
-			ellipse.setLayoutX(x);
-			ellipse.setLayoutY(y);	
+			heli.setLayoutX(x);
+			heli.setLayoutY(y);
+			if(times == 0)
+				ScenaryAnimationsThread.setAttack(false);
+			else
+				ScenaryAnimationsThread.setAttack(true);
 		}
-		
 	}
 
 	public Rectangle getRectangle1() {
@@ -167,5 +193,23 @@ public class Helicopters {
 
 	public void setOrientation(char orientation) {
 		this.orientation = orientation;
+	}
+	public boolean isEnemy() {
+		return enemy;
+	}
+	public void setEnemy(boolean enemy) {
+		this.enemy = enemy;
+	}
+	public ImageView getHeli() {
+		return heli;
+	}
+	public void setHeli(ImageView heli) {
+		this.heli = heli;
+	}
+	public int getTimes() {
+		return times;
+	}
+	public void setTimes(int times) {
+		this.times = times;
 	}
 }

@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,6 +39,7 @@ import threads.ScenaryAnimationsThread;
 import threads.StageElementsThread;
 import threads.threadAnimation;
 import threads.threadBonus;
+import threads.threadEnemys;
 
 public class GameController {
 	///////////////////////////////////////////////////////////////////////////////
@@ -74,7 +76,7 @@ public class GameController {
 	@FXML
 	private Button exitButton;
 	@FXML
-    private Label nicknameLabel;
+	private Label nicknameLabel;
 	@FXML
 	private Label time;
 	@FXML
@@ -84,7 +86,7 @@ public class GameController {
 	@FXML
 	private Button socoreButton;
 	@FXML
-    private ImageView monkeySpray;
+	private ImageView monkeySpray;
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// FXML VARIABLES
@@ -112,6 +114,7 @@ public class GameController {
 	private Helicopters helicopter;
 	private Helicopters helicopter1;
 	private Helicopters helicopter2;
+	private Helicopters heli;
 	private Stage modelStage;
 	private int from;
 	private int to;
@@ -160,7 +163,7 @@ public class GameController {
 		monkeySpray.setFitHeight(120);
 		monkeySpray.setFitWidth(110);
 		character = MenuController.character;
-		objectWritten=false;
+		objectWritten = false;
 		c = new Chronometer();
 		win = false;
 		fT = true;
@@ -194,9 +197,9 @@ public class GameController {
 		guiThread.start();
 
 		player = new Player(100, 500);
-		helicopter = new Helicopters(95, 50, panelGame, Helicopters.RIGHT);
-		helicopter1 = new Helicopters(100, 70, panelGame, Helicopters.RIGHT);
-		helicopter2 = new Helicopters(600, 100, panelGame, Helicopters.LEFT);
+		helicopter = new Helicopters(95, 50, panelGame, Helicopters.RIGHT, false);
+		helicopter1 = new Helicopters(100, 70, panelGame, Helicopters.RIGHT, false);
+		helicopter2 = new Helicopters(600, 100, panelGame, Helicopters.LEFT, false);
 		//
 		threadAnimation th = new threadAnimation(this, player);
 		th.setDaemon(true);
@@ -206,15 +209,15 @@ public class GameController {
 		gravity.setDaemon(true);
 		gravity.start();
 		//
-		ScenaryAnimationsThread sAT = new ScenaryAnimationsThread(this, helicopter);
+		ScenaryAnimationsThread sAT = new ScenaryAnimationsThread(this, helicopter, player);
 		sAT.setDaemon(true);
 		sAT.start();
 		//
-		ScenaryAnimationsThread sAT1 = new ScenaryAnimationsThread(this, helicopter1);
+		ScenaryAnimationsThread sAT1 = new ScenaryAnimationsThread(this, helicopter1, player);
 		sAT1.setDaemon(true);
 		sAT1.start();
 		//
-		ScenaryAnimationsThread sAT2 = new ScenaryAnimationsThread(this, helicopter2);
+		ScenaryAnimationsThread sAT2 = new ScenaryAnimationsThread(this, helicopter2, player);
 		sAT2.setDaemon(true);
 		sAT2.start();
 		//
@@ -230,6 +233,10 @@ public class GameController {
 		threadBonus tb = new threadBonus(this);
 		tb.setDaemon(true);
 		tb.start();
+		//
+		threadEnemys te = new threadEnemys(this);
+		te.setDaemon(true);
+		te.start();
 	}
 
 	// Update the screen every 10 ms
@@ -240,6 +247,7 @@ public class GameController {
 		helicopter.updateOnScreen();
 		helicopter1.updateOnScreen();
 		helicopter2.updateOnScreen();
+		heli.updateOnScreen();
 		if (!win) {
 			time.setText(c.getTime());
 			score.setText("" + scoreNumber);
@@ -259,13 +267,13 @@ public class GameController {
 			win = true;
 			win();
 		}
-		
+
 		if (bonus != null) {
 			int startX = bonus.getX() - 15;
 			int endX = bonus.getX() + 15;
 			if ((player.getX() >= startX && player.getX() <= endX) && (player.getY() <= bonus.getY())) {
 				panelGame.getChildren().remove(bon);
-				scoreNumber=scoreNumber +5;
+				scoreNumber = scoreNumber + 5;
 			}
 		}
 
@@ -404,7 +412,7 @@ public class GameController {
 			building4.setImage(new Image(root));
 		}
 	}
-	
+
 	public void addBonus(Bonus b) {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -467,34 +475,35 @@ public class GameController {
 		socoreButton.setVisible(true);
 		exitButton.toFront();
 		socoreButton.toFront();
-		if(!objectWritten)
+		if (!objectWritten)
 			saveSerializedPlayerScore();
 
 	}
-	
+
 	public void saveSerializedPlayerScore() {
-		objectWritten=true;
+		objectWritten = true;
 		Calendar c = new GregorianCalendar();
 		int day = (c.get(Calendar.DATE));
 		int month = (c.get(Calendar.MONTH));
 		int year = (c.get(Calendar.YEAR));
-		PlayerScore ps = new PlayerScore(nicknameLabel.getText(), hitsNumber, scoreNumber, endGameTime.getText(), new CustomDate(day,month,year));
-		
+		PlayerScore ps = new PlayerScore(nicknameLabel.getText(), hitsNumber, scoreNumber, endGameTime.getText(),
+				new CustomDate(day, month, year));
+
 		try {
-			ObjectOutputStream io= new ObjectOutputStream(new FileOutputStream(new File("data/SerializedPlayer.dat")));
+			ObjectOutputStream io = new ObjectOutputStream(new FileOutputStream(new File("data/SerializedPlayer.dat")));
 			io.writeObject(ps);
 			io.close();
 		} catch (FileNotFoundException e) {
-		
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void readNickName() {
-		File f=new File("data/nickName.txt");
+		File f = new File("data/nickName.txt");
 		try {
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
@@ -509,9 +518,54 @@ public class GameController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
+	public void addEnemy() {
+		char a = ramdonDirection(randBetween(1, 2));
+		if (a == Helicopters.RIGHT)
+			heli = new Helicopters(1, randBetween(20, 350), panelGame, a, true);
+		else
+			heli = new Helicopters(MAX_WIDTH - 1, randBetween(20, 350), panelGame, a, true);
+		ScenaryAnimationsThread sAT = new ScenaryAnimationsThread(this, heli, player);
+		sAT.setDaemon(true);
+		sAT.start();
+	}
+
+	public void deleteEnemy() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				panelGame.getChildren().remove(heli.getHeli());
+			}
+		});
+
+	}
+
+	public void addNode(Node node) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				panelGame.getChildren().add(node);
+			}
+		});
+	}
+
+	public char ramdonDirection(int i) {
+		if (i == 1)
+			return Helicopters.RIGHT;
+		else {
+			return Helicopters.LEFT;
+		}
+	}
+
+	public int randBetween(int start, int end) {
+		return start + (int) Math.round(Math.random() * (end - start));
+	}
+
+	public Pane getPane() {
+		return panelGame;
+	}
 
 }
 
