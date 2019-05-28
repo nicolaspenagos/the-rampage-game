@@ -95,12 +95,11 @@ public class ScoreController {
 	public void initialize() {
 
 		loadPlayer();
-
 		playerScoreLabel.setText("" + py.getScore());
 		playerHitsLabel.setText("" + py.getHits());
 		playerTimeLabel.setText("" + py.getTime());
 		try {
-			scoresClass = new Scores();
+			scoresClass = new Scores(py);
 			dateLabel.setText(py.getDate().toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -184,7 +183,8 @@ public class ScoreController {
 
 	@FXML
 	void save(ActionEvent event) {
-
+		scoresClass.savePlayer();
+		updateList();
 	}
 
 	@FXML

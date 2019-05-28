@@ -31,16 +31,18 @@ public class Scores implements Serializable {
 	private ArrayList<PlayerScore> playerScoreArrayList;
 	private char category;
 	private char typeOfSort;
+	private PlayerScore current;
 
 	// -------------------------------------
 	// Constructor
 	// -------------------------------------
-	public Scores() throws IOException {
+	public Scores(PlayerScore current) throws IOException {
 		playerScoreArrayList = new ArrayList<>();
 		load("data/Untitled2.txt", ",");
 		setCategory(WORLD_RANKING);
 		updatePlayerScoreArrayToShow();
 		typeOfSort=RANKING;
+		this.current=current;
 	}
 
 	// -------------------------------------
@@ -271,6 +273,17 @@ public class Scores implements Serializable {
 		
 		return px;
 		
+	}
+	
+	public void savePlayer() {
+		PlayerScore[] temp = playersScoresArrayToShow;
+		PlayerScore[] newArray= new PlayerScore[ playersScoresArrayToShow.length+1];
+		for (int i = 0; i < temp.length; i++) {
+			newArray[i]=temp[i];
+		}
+		newArray[temp.length]=current;
+		playersScoresArrayToShow=newArray;
+		sortByRankingComparable();
 	}
 
 }
