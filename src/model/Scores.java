@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,11 @@ import customsExceptions.TheArrayIsNotProperlySortedException;
 import customsExceptions.TheArrayIsNotProperlySortedException;
 
 public class Scores implements Serializable {
-
+	
+	// -------------------------------------
+	// Constants 
+	// -------------------------------------
+	public final static String PATH = "data/Untitled2.txt";
 	public final static char WORLD_RANKING = 'W';
 	public final static char TOP_5 = '5';
 	public final static char RANKING = 'R';
@@ -275,7 +280,7 @@ public class Scores implements Serializable {
 		
 	}
 	
-	public void savePlayer() {
+	public void savePlayer() throws IOException {
 		PlayerScore[] temp = playersScoresArrayToShow;
 		PlayerScore[] newArray= new PlayerScore[ playersScoresArrayToShow.length+1];
 		for (int i = 0; i < temp.length; i++) {
@@ -284,6 +289,24 @@ public class Scores implements Serializable {
 		newArray[temp.length]=current;
 		playersScoresArrayToShow=newArray;
 		sortByRankingComparable();
+		overrideTxt();
+	}
+	
+	public void overrideTxt() throws IOException {
+		String txt="";
+		
+		for(int i=0; i<playersScoresArrayToShow.length;i++) {
+			current=playersScoresArrayToShow[i];
+			if(i<playersScoresArrayToShow.length-1)
+				txt+=current.getNickName()+","+current.getHits()+","+current.getScore()+","+current.getTime()+"\n";
+			else
+				txt+=current.getNickName()+","+current.getHits()+","+current.getScore()+","+current.getTime();
+		}
+		
+		PrintWriter pw = new PrintWriter(new File(PATH));
+		pw.print(txt);
+		pw.close();
+		
 	}
 
 }

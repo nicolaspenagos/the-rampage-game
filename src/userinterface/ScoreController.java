@@ -183,7 +183,12 @@ public class ScoreController {
 
 	@FXML
 	void save(ActionEvent event) {
-		scoresClass.savePlayer();
+		try {
+			scoresClass.savePlayer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		updateList();
 	}
 
