@@ -37,6 +37,8 @@ public class Scores implements Serializable {
 	private char category;
 	private char typeOfSort;
 	private PlayerScore current;
+	private PlayerScore root;
+	private PlayerScore[] topFive;
 
 	// -------------------------------------
 	// Constructor
@@ -47,6 +49,8 @@ public class Scores implements Serializable {
 		setCategory(WORLD_RANKING);
 		updatePlayerScoreArrayToShow();
 		typeOfSort=RANKING;
+		topFive = new PlayerScore[5];
+	    root=null;
 		this.current=current;
 	}
 
@@ -59,6 +63,14 @@ public class Scores implements Serializable {
 
 	public char getCategory() {
 		return category;
+	}
+	
+	public PlayerScore getRoot() {
+		return root;
+	}
+	
+	public PlayerScore[] getTopFive() {
+		return topFive;
 	}
 
 	// -------------------------------------
@@ -308,6 +320,83 @@ public class Scores implements Serializable {
 		pw.close();
 		
 	}
-
+	
+	public void generateTopFive() {
+		sortByRankingComparable();
+		for (int i = 0; i < 5; i++) {
+			topFive[i]=playersScoresArrayToShow[i];
+			addNode(playersScoresArrayToShow[i]);
+		}
+	}
+	
+	public void addNode(PlayerScore toAdd) {
+		if(root==null) {
+			root=toAdd;
+		}else {
+			PlayerScore current = root;
+			boolean added = false;
+			
+			while(!added){
+				if(root.compareTo(current)>0) {
+					if(current.getRight()==null) {
+						current.setRight(toAdd);
+						added=true;
+					}else {
+						current=current.getRight();
+					}
+				}else {
+					if(current.getLeft()==null) {
+						current.setLeft(toAdd);
+						added=true;
+					}else {
+						current=current.getLeft();
+					}
+				}
+			}
+		}
+	}
+	
+    public int sumScores(PlayerScore n) {
+    	int suma=n.getScore();
+    	if(n.getLeft()==null && n.getRight()==null){
+    		return suma;
+    	}else{
+    		if(n.getRight()==null){
+    			suma+=sumScores(n.getLeft());
+    		}else if(n.getRight()==null){
+    			suma+=sumScores(n.getLeft());
+    		}else{
+    			suma+=sumScores(n.getLeft());
+    			suma+=sumScores(n.getRight());
+    		}
+    	}
+    	return suma;
+    }
+    
+    public String palindrome1() {
+    	String name="There is no one palindrome nickname";
+    	boolean keep=true;
+    	for (int i = 0; i < topFive.length&&keep; i++) {
+			keep=((palindrome(topFive[i].getNickName())));
+			name=topFive[i].getNickName();
+		}
+		return name;
+    }
+    
+    public static boolean palindrome(String word) {
+		return palindrome(word, 0);
+	}
+	
+	private static boolean palindrome(String word, int n) {
+		if(n == word.length()-1-n) {
+			return true;
+		}
+		else if(word.charAt(n) == word.charAt(word.length()-1-n)) {
+			return palindrome(word, n+1);
+		}
+		else {
+			return false;
+		}
+	}
 }
 

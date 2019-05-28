@@ -10,6 +10,8 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 	private String time;
 	private CustomDate date;
 	private int ranking;
+	private PlayerScore left;
+	private PlayerScore right;
 
 	public PlayerScore(String nickName, int hits, int score, String time) {
 		setRanking(0);
@@ -18,6 +20,8 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 		this.score = score;
 		this.time = time;
 		this.date = new CustomDate();
+		left=null;
+		right=null;
 	}
 
 	public PlayerScore(String nickName, int hits, int score, String time, CustomDate cD) {
@@ -93,6 +97,22 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 			}
 		}
 		return 1;
+	}
+
+	public PlayerScore getLeft() {
+		return left;
+	}
+
+	public void setLeft(PlayerScore left) {
+		this.left = left;
+	}
+
+	public PlayerScore getRight() {
+		return right;
+	}
+
+	public void setRight(PlayerScore right) {
+		right = right;
 	}
 
 }
