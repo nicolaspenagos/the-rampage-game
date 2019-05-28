@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.Bonus;
 import model.Chronometer;
 import model.CustomDate;
 import model.Player;
@@ -35,6 +37,7 @@ import threads.Gravity;
 import threads.ScenaryAnimationsThread;
 import threads.StageElementsThread;
 import threads.threadAnimation;
+import threads.threadBonus;
 
 public class GameController {
 	///////////////////////////////////////////////////////////////////////////////
@@ -120,6 +123,8 @@ public class GameController {
 	Main main;
 
 	// Image Variables
+	Bonus bonus;
+	ImageView bon;
 	Image front;
 	Image idleToWalk;
 	Image side1;
@@ -204,23 +209,27 @@ public class GameController {
 		ScenaryAnimationsThread sAT = new ScenaryAnimationsThread(this, helicopter);
 		sAT.setDaemon(true);
 		sAT.start();
-
+		//
 		ScenaryAnimationsThread sAT1 = new ScenaryAnimationsThread(this, helicopter1);
 		sAT1.setDaemon(true);
 		sAT1.start();
-
+		//
 		ScenaryAnimationsThread sAT2 = new ScenaryAnimationsThread(this, helicopter2);
 		sAT2.setDaemon(true);
 		sAT2.start();
-
+		//
 		StageElementsThread sET = new StageElementsThread(this);
 		sET.setDaemon(true);
 		updateStageElements();
 		sET.start();
-
+		//
 		CollapsedThread cT = new CollapsedThread(this, modelStage);
 		cT.setDaemon(true);
 		cT.start();
+		//
+		threadBonus tb = new threadBonus(this);
+		tb.setDaemon(true);
+		tb.start();
 	}
 
 	// Update the screen every 10 ms
@@ -249,6 +258,14 @@ public class GameController {
 		if (modelStage.getFirst() == null) {
 			win = true;
 			win();
+		}
+		
+		if (bonus != null) {
+			int startX = bonus.getX() - 15;
+			int endX = bonus.getX() + 15;
+			if ((player.getX() >= startX && player.getX() <= endX) && (player.getY() <= bonus.getY())) {
+				panelGame.getChildren().remove(bon);
+			}
 		}
 
 	}
@@ -385,6 +402,29 @@ public class GameController {
 			String root = "Images/b4-" + counter + ".png";
 			building4.setImage(new Image(root));
 		}
+	}
+	
+	public void addBonus(Bonus b) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				bonus = b;
+				bon = new ImageView(bonus.getImage());
+				bon.setFitWidth(55);
+				bon.setFitHeight(45);
+				panelGame.getChildren().add(bon);
+			}
+		});
+	}
+
+	public void updateBonus() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				bon.setLayoutX(bonus.getX());
+				bon.setLayoutY(bonus.getY());
+			}
+		});
 	}
 
 	public void setupMain(Main m) {
