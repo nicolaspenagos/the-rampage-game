@@ -149,11 +149,11 @@ public class Scores implements Serializable {
 		}
 	}
 
-	private void sortByDateComparator() {
+	public void sortByDateComparator() {
 		Arrays.parallelSort(playersScoresArrayToShow, new CustomDateComparator());
 	}
 
-	private void sortByTimeInsertion() {
+	public void sortByTimeInsertion() {
 		for (int i = 1; i < playersScoresArrayToShow.length; i++) {
 			PlayerScore aux = playersScoresArrayToShow[i];
 			int j;
@@ -165,7 +165,7 @@ public class Scores implements Serializable {
 		
 	}
 
-	private void sortByScoreSelection() {
+	public void sortByScoreSelection() {
 		int n = playersScoresArrayToShow.length;
 		for (int i = 0; i < n - 1; i++) {
 			int min_idx = i;
@@ -180,7 +180,7 @@ public class Scores implements Serializable {
 
 	}
 
-	private void sortByNicknameBubbleSort() {
+	public void sortByNicknameBubbleSort() {
 		for (int i = playersScoresArrayToShow.length; i > 0; i--) {
 			for (int j = 0; j < i - 1; j++) {
 				if (playersScoresArrayToShow[j].getNickName()
@@ -194,7 +194,7 @@ public class Scores implements Serializable {
 
 	}
 
-	private void sortByHitsSelection() {
+	public void sortByHitsSelection() {
 		int n = playersScoresArrayToShow.length;
 		for (int i = 0; i < n - 1; i++) {
 			int min_idx = i;
@@ -242,7 +242,7 @@ public class Scores implements Serializable {
 		return px;
 	}
 
-	private PlayerScore binarySearchByNickName(String nickName) {
+	public PlayerScore binarySearchByNickName(String nickName) {
 		sortByNicknameBubbleSort();
 		PlayerScore px = null;
 		
@@ -264,7 +264,7 @@ public class Scores implements Serializable {
 		return px;
 	}
 
-	private PlayerScore binarySearchByRanking(int x) {
+	public PlayerScore binarySearchByRanking(int x) {
 		sortByRankingComparable();
 		PlayerScore px = null;
 		
@@ -397,5 +397,16 @@ public class Scores implements Serializable {
 			return false;
 		}
 	}
+
+	public char getTypeOfSorting() {
+		return typeOfSort;
+	}
+
+	public void setTypeOfSort(char typeOfSort) {
+		this.typeOfSort = typeOfSort;
+	}
+	
+	
+	
 }
 
