@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 import customsExceptions.NothingSelectedException;
 import customsExceptions.TheArrayIsNotProperlySortedException;
-import customsExceptions.TheArrayIsNotProperlySortedException;
 
 public class Scores implements Serializable {
 	

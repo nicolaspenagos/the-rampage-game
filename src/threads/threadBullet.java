@@ -24,7 +24,6 @@ public class threadBullet extends Thread {
 	public void run() {
 		gc.addBullet(bullet);
 		while (bullet.getY() < 660 && hit == false) {
-			System.out.println(bullet.getY());
 			try {
 				bullet.fall();
 				gc.updateBullet();
