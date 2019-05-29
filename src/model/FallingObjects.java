@@ -17,7 +17,7 @@ public class FallingObjects {
 	//Methods
 	
 	public void fall() {
-		y+= 4;
+		y+= 6;
 	}
 	
 	public int randBetween(int start, int end) {

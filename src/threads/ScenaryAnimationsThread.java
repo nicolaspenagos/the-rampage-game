@@ -1,6 +1,9 @@
 package threads;
 
 import userinterface.Helicopters;
+
+import org.ietf.jgss.GSSManager;
+
 import javafx.scene.image.Image;
 import model.Bullet;
 import model.Player;
@@ -88,7 +91,7 @@ public class ScenaryAnimationsThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		helicopter.getHeli().setVisible(false);
+		GameController.deleteEnemy();
 	}
 
 	public static boolean isAttack() {

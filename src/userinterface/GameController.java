@@ -26,6 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.Bonus;
+import model.Bullet;
 import model.Chronometer;
 import model.CustomDate;
 import model.Player;
@@ -39,6 +40,7 @@ import threads.ScenaryAnimationsThread;
 import threads.StageElementsThread;
 import threads.threadAnimation;
 import threads.threadBonus;
+import threads.threadBullet;
 import threads.threadEnemys;
 
 public class GameController {
@@ -122,12 +124,15 @@ public class GameController {
 	private ArrayList<ImageView> stageElements;
 	String character;
 	private boolean win;
+	private boolean lose;
 	private boolean objectWritten;
 	Main main;
 
 	// Image Variables
 	Bonus bonus;
+	Bullet bullet;
 	ImageView bon;
+	ImageView bull;
 	Image front;
 	Image idleToWalk;
 	Image side1;
@@ -166,6 +171,7 @@ public class GameController {
 		objectWritten = false;
 		c = new Chronometer();
 		win = false;
+		lose = false;
 		fT = true;
 		front = new Image(character + "/front.png");
 		side1 = new Image(character + "/side1.png");
@@ -261,13 +267,15 @@ public class GameController {
 			Life3.setVisible(false);
 		if (player.getLives() == 1)
 			Life2.setVisible(false);
-		if (player.getLives() == 1)
+		if (player.getLives() == 1) {
+			Life1.setVisible(false);
 			lose();
+		}
 		if (modelStage.getFirst() == null) {
 			win = true;
 			win();
 		}
-
+		
 		if (bonus != null) {
 			int startX = bonus.getX() - 15;
 			int endX = bonus.getX() + 15;
@@ -425,13 +433,36 @@ public class GameController {
 			}
 		});
 	}
+	
+	public void addBullet(Bullet b) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				bullet = b;
+				bull = new ImageView(bullet.getImage());
+				panelGame.getChildren().add(bull);
+			}
+		});
+	}
 
 	public void updateBonus() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				bon.setLayoutX(bonus.getX());
-				bon.setLayoutY(bonus.getY());
+				if(bon != null) {
+					bon.setLayoutX(bonus.getX());
+					bon.setLayoutY(bonus.getY());
+				}
+			}
+		});
+	}
+	
+	public void updateBullet() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				bull.setLayoutX(bullet.getX());
+				bull.setLayoutY(bullet.getY());
 			}
 		});
 	}
@@ -456,10 +487,29 @@ public class GameController {
 	}
 
 	public void lose() {
-
+		lose = true;
+		youWinImage.setImage(new Image("Images/YOU_LOSE.png"));
+		youWinImage.setVisible(true);
+		endGameHits.setVisible(true);
+		endGameTime.setVisible(true);
+		endGameScore.setVisible(true);
+		endGameHits.setText(hits.getText());
+		endGameTime.setText(time.getText());
+		endGameScore.setText(score.getText());
+		youWinImage.toFront();
+		endGameHits.toFront();
+		endGameTime.toFront();
+		endGameScore.toFront();
+		exitButton.setVisible(true);
+		socoreButton.setVisible(true);
+		exitButton.toFront();
+		socoreButton.toFront();
+		if (!objectWritten)
+			saveSerializedPlayerScore();
 	}
 
 	public void win() {
+		win = true;
 		youWinImage.setVisible(true);
 		endGameHits.setVisible(true);
 		endGameTime.setVisible(true);
@@ -537,9 +587,19 @@ public class GameController {
 			@Override
 			public void run() {
 				panelGame.getChildren().remove(heli.getHeli());
+				
 			}
 		});
-
+	}
+	
+	public void deleteBullet() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				panelGame.getChildren().remove(bull);
+				
+			}
+		});
 	}
 
 	public void addNode(Node node) {
@@ -565,6 +625,22 @@ public class GameController {
 
 	public Pane getPane() {
 		return panelGame;
+	}
+
+	public boolean getLose() {
+		return lose;
+	}
+
+	public void setLose(boolean lose) {
+		this.lose = lose;
+	}
+	
+	public boolean getWin() {
+		return win;
+	}
+
+	public void setWin(boolean win) {
+		this.win = win;
 	}
 
 }

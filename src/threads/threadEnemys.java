@@ -12,12 +12,10 @@ public class threadEnemys extends Thread{
 	
 	@Override
 	public void run() {
-		while (true) {
+		while (gc.getWin() == false && gc.getLose() == false) {
 			try {
 				gc.addEnemy();
 				sleep(20000);
-				gc.deleteEnemy();
-				sleep(100);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

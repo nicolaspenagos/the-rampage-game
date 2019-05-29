@@ -24,6 +24,7 @@ public class Helicopters {
 	private char orientation;
 	private boolean enemy;
 	private int times;
+	private boolean attack;
 	
 	//Enemy
 	ImageView heli;
@@ -37,6 +38,7 @@ public class Helicopters {
 		orientation = o;
 		this.enemy = enemy;
 		times = 0;
+		setAttack(false);
 		if(enemy == false) {
 			Rectangle one = new Rectangle(27,100);
 			one.setLayoutX(379);
@@ -156,10 +158,14 @@ public class Helicopters {
 		}else {
 			heli.setLayoutX(x);
 			heli.setLayoutY(y);
-			if(times == 0)
+			if(times == 0) {
 				ScenaryAnimationsThread.setAttack(false);
-			else
+				setAttack(false);
+			}else {
 				ScenaryAnimationsThread.setAttack(true);
+				setAttack(true);
+			}
+				
 		}
 	}
 
@@ -211,5 +217,17 @@ public class Helicopters {
 	}
 	public void setTimes(int times) {
 		this.times = times;
+	}
+
+
+
+	public boolean getAttack() {
+		return attack;
+	}
+
+
+
+	public void setAttack(boolean attack) {
+		this.attack = attack;
 	}
 }

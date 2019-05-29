@@ -22,15 +22,16 @@ public class threadTimeToShoot extends Thread{
 
 	@Override
 	public void run() {
-		while (true) {
+		while (helicopter.getTimes() < 2) {
 			try {
-				if(ScenaryAnimationsThread.attack == true) {
-					sleep(2000);
+				if(helicopter.getAttack() == true) {
+					sleep(3500);
 					Bullet b = new Bullet((int)helicopter.getX(), (int)helicopter.getY(), missile);
 					threadBullet tb = new threadBullet(GameController,b, player);
 					tb.setDaemon(true);
 					tb.start();
 				}
+				sleep(10);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
